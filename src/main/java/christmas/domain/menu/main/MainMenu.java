@@ -2,9 +2,9 @@ package christmas.domain.menu.main;
 
 import christmas.domain.menu.Menu;
 
-public class Main extends Menu {
+public class MainMenu extends Menu {
 
-    public Main(String name, int price) {
+    public MainMenu(String name, int price) {
         super(name, price);
     }
 }

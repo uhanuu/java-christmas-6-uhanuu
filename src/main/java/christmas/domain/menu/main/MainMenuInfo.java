@@ -1,30 +1,31 @@
-package christmas.domain.menu.appetizer;
+package christmas.domain.menu.main;
 
 import java.util.Arrays;
 
-public enum AppetizerInfo {
+public enum MainMenuInfo {
 
-    MUSHROOM_SOUP("양송이수프", 6_000),
-    TAPAS("타파스", 5_500),
-    CAESAR_SALAD("시저샐러드", 8_000);
+    T_BONE_STEAK("티본스테이크", 55_000),
+    BBQ_RIBS("바비큐립", 54_000),
+    SEAFOOD_PASTA("해산물파스타", 35_000),
+    CHRISTMAS_PASTA("크리스마스파스타", 25_000);
 
     private final String name;
     private final int price;
 
-    AppetizerInfo(String name, int price) {
+    MainMenuInfo(String name, int price) {
         this.name = name;
         this.price = price;
     }
 
-    public static AppetizerInfo getInfo(String name) {
-        return Arrays.stream(AppetizerInfo.values())
+    public static MainMenuInfo getInfo(String name) {
+        return Arrays.stream(MainMenuInfo.values())
                 .filter(info -> info.name.equals(name))
                 .findAny()
                 .orElseThrow(() -> new IllegalArgumentException("해당 이름에 요리가 존재하지 않습니다."));
     }
 
     public static boolean isContains(String name) {
-        return Arrays.stream(AppetizerInfo.values())
+        return Arrays.stream(MainMenuInfo.values())
                 .filter(info -> info.name.equals(name))
                 .findAny()
                 .isPresent();
