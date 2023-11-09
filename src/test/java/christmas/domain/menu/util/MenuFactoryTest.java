@@ -43,7 +43,6 @@ class MenuFactoryTest {
                     assertThat((Beverage) beverage).isInstanceOf(Beverage.class);
                     assertThat(beverage.getName()).isEqualTo(name);
                     assertThat(beverage.getPrice()).isEqualTo(price);
-
                 }),
                 DynamicTest.dynamicTest("디저트를 생성할 수 있다.", () -> {
                     //given
@@ -55,7 +54,6 @@ class MenuFactoryTest {
                     assertThat((Desert) desert).isInstanceOf(Desert.class);
                     assertThat(desert.getName()).isEqualTo(name);
                     assertThat(desert.getPrice()).isEqualTo(price);
-
                 }),
                 DynamicTest.dynamicTest("메인 음식 생성할 수 있다.", () -> {
                     //when
@@ -66,7 +64,6 @@ class MenuFactoryTest {
                     assertThat((MainMenu) mainMenu).isInstanceOf(MainMenu.class);
                     assertThat(mainMenu.getName()).isEqualTo(name);
                     assertThat(mainMenu.getPrice()).isEqualTo(price);
-
                 })
         );
     }
