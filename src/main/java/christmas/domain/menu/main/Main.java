@@ -4,9 +4,8 @@ import christmas.domain.menu.Menu;
 
 public class Main extends Menu {
 
-    public Main(String name, int price, int quantity) {
-        super(name, price, quantity);
+    public Main(String name, int price) {
+        super(name, price);
     }
-
 }
 
