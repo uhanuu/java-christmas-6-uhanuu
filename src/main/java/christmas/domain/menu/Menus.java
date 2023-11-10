@@ -11,7 +11,7 @@ public class Menus {
         this.menus = menus;
     }
 
-    public int totalPrice() {
+    public int getTotalPrice() {
         return menus.stream()
                 //get보다는 객체에게 메시지하기 menu에서 수량 고민하기 중간에 Menu와 수량을 가지는 객체를 만들어도 좋을거 같다.
                 .mapToInt(Menu::getPrice)
