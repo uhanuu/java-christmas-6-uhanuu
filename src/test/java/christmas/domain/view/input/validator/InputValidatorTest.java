@@ -1,10 +1,12 @@
 package christmas.domain.view.input.validator;
 
+import christmas.view.input.validator.InputValidator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -53,6 +55,33 @@ class InputValidatorTest {
         // when // then
         assertThatThrownBy(() -> validator.validateDate(monthOfDate))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @ParameterizedTest(name = "{0}은 일치하는 입력 폼입니다.")
+    @DisplayName("사용자 주문의 입력 폼을 검증한다.")
+    @ValueSource(strings = {"티본스테이크-1", "바비큐립-10", "초코케이크-2", "제로콜라-1"})
+    public void requestOrderItems(String input) {
+        // given
+        List<String> requestItems = requestItems(input);
+        // when
+        validator.validateOrderItems(requestItems);
+        // then
+    }
+
+    @ParameterizedTest(name = "{0}은 입력 폼과 다릅니다.")
+    @DisplayName("사용자 주문의 입력 폼이 잘못되면 예외가 발생한다.")
+    @ValueSource(strings = {"티본스테이크1-1", "바비큐립", "asd-2", "제로콜라-100", "티본스테이크-", "-3", " ", ""})
+    public void requestOrderItemsException(String input) {
+        // given
+        List<String> requestItems = requestItems(input);
+        requestItems.forEach(System.out::println);
+        // when //then
+        assertThatThrownBy(() -> validator.validateOrderItems(requestItems))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    public List<String> requestItems(String input) {
+        return List.of(input.split(","));
     }
 
 }

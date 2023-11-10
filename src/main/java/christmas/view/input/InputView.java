@@ -1,8 +1,10 @@
-package christmas.domain.view.input;
+package christmas.view.input;
 
-import christmas.domain.view.input.validator.InputValidator;
+import christmas.view.input.validator.InputValidator;
 
 import java.time.LocalDate;
+import java.util.Arrays;
+import java.util.List;
 
 public class InputView implements ConsoleInput{
 
@@ -15,5 +17,11 @@ public class InputView implements ConsoleInput{
     public LocalDate requestVisitDate() {
         int monthOfDate = inputValidator.parseInt(readLine());
         return inputValidator.validateDate(monthOfDate);
+    }
+
+    public List<String> requestOrderItems() {
+        List<String> requestOrderItems = List.of(readLine().split(","));
+        inputValidator.validateOrderItems(requestOrderItems);
+        return requestOrderItems;
     }
 }
