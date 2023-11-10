@@ -1,27 +1,18 @@
 package christmas.domain.order;
 
 import christmas.domain.menu.MenuInfo;
+import christmas.domain.menu.MenuType;
 
 public class OrderItem {
-    private String name;
-    private int quantity;
+    private final MenuInfo menuInfo;
+    private final int quantity;
 
-    public OrderItem(String name, int quantity) {
-        validateOrderItemName(name);
-        validatePositiveQuantity(quantity);
-        this.name = name;
+    public OrderItem(MenuInfo menuInfo, int quantity) {
+        this.menuInfo = menuInfo;
         this.quantity = quantity;
     }
 
-    private void validateOrderItemName(String name) {
-        if (!MenuInfo.isContains(name)) {
-            throw new IllegalArgumentException();
-        }
-    }
-
-    private void validatePositiveQuantity(int quantity) {
-        if (0 > quantity) {
-            throw new IllegalStateException();
-        }
+    public boolean isBeverage() {
+        return MenuType.isBeverage(menuInfo);
     }
 }

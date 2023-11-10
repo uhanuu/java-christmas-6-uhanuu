@@ -19,7 +19,7 @@ public class InputView implements ConsoleInput{
     }
 
     public List<String> requestOrderItems() {
-        List<String> requestOrderItems = List.of(readLine().split(","));
+        List<String> requestOrderItems = List.of(readLine().trim().split(","));
         validateItems(requestOrderItems);
         return requestOrderItems;
     }

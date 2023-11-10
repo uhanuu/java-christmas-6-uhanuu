@@ -18,4 +18,12 @@ public enum MenuType {
         this.type = type;
         this.menuInfo = menuInfo;
     }
+
+    public static boolean isBeverage(MenuInfo menuInfo) {
+        return BEVERAGE.menuInfo.stream()
+                .filter(beverage -> beverage.equals(menuInfo))
+                .findAny()
+                .isPresent();
+    }
+
 }
