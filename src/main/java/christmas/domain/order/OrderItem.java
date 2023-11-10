@@ -1,7 +1,7 @@
 package christmas.domain.order;
 
-import christmas.domain.menu.MenuInfo;
-import christmas.domain.menu.MenuType;
+import christmas.domain.order.menu.MenuInfo;
+import christmas.domain.order.menu.MenuType;
 
 public class OrderItem {
     private final MenuInfo menuInfo;

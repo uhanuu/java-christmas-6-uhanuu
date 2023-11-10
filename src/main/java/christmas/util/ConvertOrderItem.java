@@ -1,6 +1,6 @@
 package christmas.util;
 
-import christmas.domain.menu.MenuInfo;
+import christmas.domain.order.menu.MenuInfo;
 import christmas.domain.order.OrderItem;
 
 import java.util.List;
@@ -24,7 +24,7 @@ public class ConvertOrderItem {
         String name = itemForm.get(NAME_INDEX);
         int quantity = Integer.parseInt(itemForm.get(QUANTITY_INDEX));
 
-        return new OrderItem(MenuInfo.getInfo(name), quantity);
+        return new OrderItem(MenuInfo.getMenuInfo(name), quantity);
     }
 
 }
