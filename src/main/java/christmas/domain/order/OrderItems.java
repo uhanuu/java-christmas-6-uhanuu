@@ -5,14 +5,12 @@ import java.util.List;
 
 public class OrderItems {
 
-    private static final int MINIMUM_ORDER_AMOUNT = 10000;
     private final List<OrderItem> orderItems;
 
     public OrderItems(List<OrderItem> orderItems) {
         validateOrderItems(orderItems);
         this.orderItems = orderItems;
-        validateTotalPrice();
-
+        validateTotalQuantity();
     }
 
     private void validateOrderItems(List<OrderItem> orderItems) {
@@ -30,12 +28,18 @@ public class OrderItems {
                 .count();
     }
 
-    private void validateTotalPrice() {
-        int totalPrice = getTotalPrice();
+    private void validateTotalQuantity() {
+        int totalQuantity = getTotalQuantity();
 
-        if (totalPrice < MINIMUM_ORDER_AMOUNT) {
-            throw new IllegalArgumentException("최소 주문금액은 +" + MINIMUM_ORDER_AMOUNT + "+원 입니다.");
+        if (totalQuantity > 20) {
+            throw new IllegalArgumentException("주문은 최대 20개 까지만 가능합니다.");
         }
+    }
+
+    private int getTotalQuantity() {
+        return orderItems.stream()
+                .mapToInt(OrderItem::getQuantity)
+                .sum();
     }
 
     public int getTotalPrice() {

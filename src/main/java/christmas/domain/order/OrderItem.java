@@ -20,6 +20,10 @@ public class OrderItem {
         return MenuType.isBeverage(menuInfo);
     }
 
+    public int getQuantity() {
+        return quantity;
+    }
+
     @Override
     public String toString() {
         return "OrderItem{" +

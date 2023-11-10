@@ -37,11 +37,11 @@ class OrderItemsTest {
     }
 
     @Test
-    @DisplayName("주문 총 금액이 최소 주문 금액을 만족하지 못하면 예외가 발생한다.")
-    public void validateTotalPrice() {
+    @DisplayName("주문 메뉴의 총 개수가 20개가 넘어가면 예외가 발생한다.")
+    public void validateTotalQuantity() {
         // given
-        OrderItem orderItem1 = createOrderItem(MenuInfo.MUSHROOM_SOUP, 1);
-        OrderItem orderItem2 = createOrderItem(MenuInfo.ZERO_COLA, 1);
+        OrderItem orderItem1 = createOrderItem(MenuInfo.MUSHROOM_SOUP, 10);
+        OrderItem orderItem2 = createOrderItem(MenuInfo.ZERO_COLA, 11);
         // when // then
         assertThatThrownBy(() -> new OrderItems(List.of(orderItem1, orderItem2)))
                 .isInstanceOf(IllegalArgumentException.class);
