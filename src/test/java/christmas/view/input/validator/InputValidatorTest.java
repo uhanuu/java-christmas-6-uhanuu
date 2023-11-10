@@ -1,4 +1,4 @@
-package christmas.domain.view.input.validator;
+package christmas.view.input.validator;
 
 import christmas.view.input.validator.InputValidator;
 import org.junit.jupiter.api.DisplayName;
