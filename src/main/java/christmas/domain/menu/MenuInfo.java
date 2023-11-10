@@ -45,14 +45,6 @@ public enum MenuInfo {
                 .orElseThrow(() -> new IllegalArgumentException("해당 이름에 요리가 존재하지 않습니다."));
     }
 
-    public static boolean isContains(String name) {
-        return Arrays.stream(MenuInfo.values())
-                .filter(info -> info.name.equals(name))
-                .findAny()
-                .isPresent();
-    }
-
-
     public String getName() {
         return name;
     }

@@ -12,7 +12,19 @@ public class OrderItem {
         this.quantity = quantity;
     }
 
+    public int getTotalPrice() {
+        return menuInfo.getPrice() * quantity;
+    }
+
     public boolean isBeverage() {
         return MenuType.isBeverage(menuInfo);
+    }
+
+    @Override
+    public String toString() {
+        return "OrderItem{" +
+                "menuInfo=" + menuInfo +
+                ", quantity=" + quantity +
+                '}';
     }
 }

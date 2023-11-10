@@ -1,15 +1,18 @@
 package christmas.domain.order;
 
-import christmas.domain.menu.MenuInfo;
-
 import java.time.LocalDate;
+import java.util.List;
 
 public class Order {
     private final LocalDate localDate;
-    private final OrderItem orderItem;
+    private final OrderItems orderItems;
 
-    public Order(LocalDate localDate, OrderItem orderItem) {
+    public Order(LocalDate localDate, OrderItems orderItems) {
         this.localDate = localDate;
-        this.orderItem = orderItem;
+        this.orderItems = orderItems;
+    }
+
+    public List<OrderItem> getOrderItems() {
+        return orderItems.getOrderItems();
     }
 }

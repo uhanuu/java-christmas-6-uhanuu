@@ -1,6 +1,7 @@
 package christmas.controller;
 
-import christmas.domain.order.ConvertOrderItem;
+import christmas.domain.order.Order;
+import christmas.util.ConvertOrderItem;
 import christmas.domain.order.OrderItem;
 import christmas.domain.order.OrderItems;
 import christmas.view.input.ConsoleInput;
@@ -16,11 +17,11 @@ public class OrderController {
         this.input = input;
     }
 
-    public OrderItems createOrder() {
+    public Order createOrder() {
         LocalDate localDate = input.requestVisitDate();
         List<String> orderItemsForm = input.requestOrderItems();
         List<OrderItem> allItem = ConvertOrderItem.getAllMenu(orderItemsForm);
-        return new OrderItems(allItem);
+        return new Order(localDate, new OrderItems(allItem));
     }
 
 }

@@ -1,6 +1,7 @@
-package christmas.domain.order;
+package christmas.util;
 
 import christmas.domain.menu.MenuInfo;
+import christmas.domain.order.OrderItem;
 
 import java.util.List;
 
