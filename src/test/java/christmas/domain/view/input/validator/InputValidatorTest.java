@@ -64,19 +64,19 @@ class InputValidatorTest {
         // given
         List<String> requestItems = requestItems(input);
         // when
-        validator.validateOrderItems(requestItems);
+        validator.validateOrderItemsForm(requestItems);
         // then
     }
 
     @ParameterizedTest(name = "{0}은 입력 폼과 다릅니다.")
     @DisplayName("사용자 주문의 입력 폼이 잘못되면 예외가 발생한다.")
-    @ValueSource(strings = {"티본스테이크1-1", "바비큐립", "asd-2", "제로콜라-100", "티본스테이크-", "-3", " ", ""})
+    @ValueSource(strings = {"티본스테이크1-1", "바비큐립", "asd-2", "제로콜라-100", "제로콜라-0", "티본스테이크-", "-3", " ", ""})
     public void requestOrderItemsException(String input) {
         // given
         List<String> requestItems = requestItems(input);
         requestItems.forEach(System.out::println);
         // when //then
-        assertThatThrownBy(() -> validator.validateOrderItems(requestItems))
+        assertThatThrownBy(() -> validator.validateOrderItemsForm(requestItems))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

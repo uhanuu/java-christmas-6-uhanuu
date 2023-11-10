@@ -3,6 +3,7 @@ package christmas.view.input;
 import camp.nextstep.edu.missionutils.Console;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public interface ConsoleInput {
 
@@ -11,4 +12,6 @@ public interface ConsoleInput {
     }
 
     LocalDate requestVisitDate();
+
+    List<String> requestOrderItems();
 }

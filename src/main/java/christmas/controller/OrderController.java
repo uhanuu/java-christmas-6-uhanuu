@@ -1,23 +1,25 @@
 package christmas.controller;
 
-import christmas.controller.dto.OrderInfoDto;
-import christmas.service.OrderService;
+import christmas.domain.order.OrderItem;
 import christmas.view.input.ConsoleInput;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class OrderController {
 
     private final ConsoleInput input;
-    private final OrderService orderService;
 
-    public OrderController(ConsoleInput input, OrderService orderService) {
+    public OrderController(ConsoleInput input) {
         this.input = input;
-        this.orderService = orderService;
     }
 
-    public OrderInfoDto createOrder() {
+    public OrderItem createOrder() {
         LocalDate localDate = input.requestVisitDate();
+        List<String> orderItemsForm = input.requestOrderItems();
+
+
+
         return null;
     }
 }

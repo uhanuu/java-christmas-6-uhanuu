@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
 
 public class InputValidator {
 
-    private static final Pattern ORDER_ITEMS_PATTERN = Pattern.compile("[가-힣]+-[0-9]{1,2}$");
+    private static final Pattern ORDER_ITEMS_PATTERN = Pattern.compile("([가-힣]+)-([1-9][0-9]?)");
 
     private final int YEAR = 2023;
     private final int MONTH = 12;
@@ -29,13 +29,19 @@ public class InputValidator {
         }
     }
 
-    public void validateOrderItems(List<String> requestOrderItems) {
+    public void validateOrderItemsForm(List<String> requestOrderItems) {
         for (String orderItem : requestOrderItems) {
             Matcher matcher = ORDER_ITEMS_PATTERN.matcher(orderItem);
             if (!matcher.matches()) {
                 throw new IllegalArgumentException("주문 상품의 입력이 올바르지 않습니다.");
             }
         }
+    }
 
+    public void validateOrderItemsSize(List<String> requestOrderItems) {
+        int itemSize = requestOrderItems.size();
+        if (0 > itemSize) {
+            throw new IllegalArgumentException("주문 상품의 개수는 1개 이상입니다.");
+        }
     }
 }

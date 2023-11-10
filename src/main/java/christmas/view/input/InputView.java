@@ -3,14 +3,13 @@ package christmas.view.input;
 import christmas.view.input.validator.InputValidator;
 
 import java.time.LocalDate;
-import java.util.Arrays;
 import java.util.List;
 
 public class InputView implements ConsoleInput{
 
     private final InputValidator inputValidator;
 
-    public InputView(InputValidator inputValidator) {
+    public InputView() {
         this.inputValidator = new InputValidator();
     }
 
@@ -21,7 +20,12 @@ public class InputView implements ConsoleInput{
 
     public List<String> requestOrderItems() {
         List<String> requestOrderItems = List.of(readLine().split(","));
-        inputValidator.validateOrderItems(requestOrderItems);
+        validateItems(requestOrderItems);
         return requestOrderItems;
+    }
+
+    private void validateItems(List<String> requestOrderItems) {
+        inputValidator.validateOrderItemsForm(requestOrderItems);
+        inputValidator.validateOrderItemsSize(requestOrderItems);
     }
 }
