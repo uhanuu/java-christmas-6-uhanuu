@@ -17,4 +17,6 @@ public abstract class Menu {
     public int getPrice() {
         return price;
     }
+
+
 }
