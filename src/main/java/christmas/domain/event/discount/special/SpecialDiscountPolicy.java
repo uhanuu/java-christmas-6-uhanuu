@@ -1,12 +1,12 @@
-package christmas.domain.discount.special;
+package christmas.domain.event.discount.special;
 
-import christmas.domain.discount.DiscountPolicy;
+import christmas.domain.event.discount.DiscountPolicy;
 import christmas.service.dto.DiscountDto;
 
 import java.time.LocalDate;
 
-import static christmas.domain.discount.special.SpecialDiscount.isCalendarStarEvent;
-import static christmas.domain.discount.special.SpecialDiscount.CALENDAR_STAR_EVENT;
+import static christmas.domain.event.discount.special.SpecialDiscount.isCalendarStarEvent;
+import static christmas.domain.event.discount.special.SpecialDiscount.CALENDAR_STAR_EVENT;
 
 public class SpecialDiscountPolicy implements DiscountPolicy {
 

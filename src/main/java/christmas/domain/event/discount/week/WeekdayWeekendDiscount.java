@@ -1,4 +1,4 @@
-package christmas.domain.discount.week;
+package christmas.domain.event.discount.week;
 
 import christmas.domain.order.OrderItem;
 import christmas.menu.MenuType;

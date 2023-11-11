@@ -1,11 +1,9 @@
-package christmas.domain.discount.christmas;
+package christmas.domain.event.discount.christmas;
 
-import christmas.domain.discount.DiscountPolicy;
+import christmas.domain.event.discount.DiscountPolicy;
 import christmas.service.dto.DiscountDto;
 
 import java.time.LocalDate;
-
-import static christmas.domain.discount.christmas.ChristmasDiscount.CHRISTMAS_EVENT;
 
 public class ChristmasDiscountPolicy implements DiscountPolicy {
 
@@ -15,7 +13,7 @@ public class ChristmasDiscountPolicy implements DiscountPolicy {
     public int discount(DiscountDto discountDto) {
         LocalDate localDate = discountDto.getLocalDate();
 
-        if (!CHRISTMAS_EVENT.isChristmasEvent(localDate)) {
+        if (!ChristmasDiscount.CHRISTMAS_EVENT.isChristmasEvent(localDate)) {
             return DEFAULT_DISCOUNT;
         }
         return ChristmasDiscount.calculateChristmasDiscountPrice(localDate);
