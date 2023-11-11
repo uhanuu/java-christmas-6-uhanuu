@@ -4,7 +4,7 @@ import java.time.DayOfWeek;
 import java.time.LocalDate;
 
 public enum SpecialDiscount {
-    EVENT_CALENDAR_STAR(1000, 25);
+    CALENDAR_STAR_EVENT(1000, 25);
 
     private final int discountPrice;
     private final int christmasDay;
@@ -23,7 +23,7 @@ public enum SpecialDiscount {
     }
 
     private static boolean isChristmasDay(LocalDate localDate) {
-        return localDate.getDayOfMonth() == EVENT_CALENDAR_STAR.christmasDay;
+        return localDate.getDayOfMonth() == CALENDAR_STAR_EVENT.christmasDay;
     }
 
     public int getDiscountPrice() {

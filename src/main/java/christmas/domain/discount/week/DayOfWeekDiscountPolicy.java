@@ -13,8 +13,6 @@ import static christmas.domain.discount.week.WeekdayWeekendDiscount.calculateWee
 
 public class DayOfWeekDiscountPolicy implements DiscountPolicy {
 
-    private static final int DEFAULT_DISCOUNT = 0;
-
     @Override
     public int discount(DiscountDto discountDto) {
         LocalDate localDate = discountDto.getLocalDate();
