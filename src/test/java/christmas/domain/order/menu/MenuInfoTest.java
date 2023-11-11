@@ -1,5 +1,6 @@
 package christmas.domain.order.menu;
 
+import christmas.menu.MenuInfo;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;

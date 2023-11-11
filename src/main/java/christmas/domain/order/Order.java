@@ -12,7 +12,15 @@ public class Order {
         this.orderItems = orderItems;
     }
 
+    public int getItemsTotalPrice() {
+        return orderItems.getTotalPrice();
+    }
+
     public List<OrderItem> getOrderItems() {
         return orderItems.getOrderItems();
+    }
+
+    public LocalDate getLocalDate() {
+        return localDate;
     }
 }

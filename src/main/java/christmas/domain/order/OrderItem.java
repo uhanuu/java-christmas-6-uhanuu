@@ -1,7 +1,7 @@
 package christmas.domain.order;
 
-import christmas.domain.order.menu.MenuInfo;
-import christmas.domain.order.menu.MenuType;
+import christmas.menu.MenuInfo;
+import christmas.menu.MenuType;
 
 public class OrderItem {
     private final MenuInfo menuInfo;
@@ -22,6 +22,10 @@ public class OrderItem {
 
     public int getQuantity() {
         return quantity;
+    }
+
+    public MenuInfo getMenuInfo() {
+        return menuInfo;
     }
 
     @Override

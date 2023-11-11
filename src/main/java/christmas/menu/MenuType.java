@@ -1,4 +1,4 @@
-package christmas.domain.order.menu;
+package christmas.menu;
 
 import java.util.Collections;
 import java.util.List;
@@ -25,5 +25,19 @@ public enum MenuType {
                 .findAny()
                 .isPresent();
     }
+    public static boolean isMainMenu(MenuInfo menuInfo) {
+        return MAIN_MENU.menuInfo.stream()
+                .filter(main -> main.equals(menuInfo))
+                .findAny()
+                .isPresent();
+    }
+
+    public static boolean isDesert(MenuInfo menuInfo) {
+        return DESERT.menuInfo.stream()
+                .filter(desert -> desert.equals(menuInfo))
+                .findAny()
+                .isPresent();
+    }
+
 
 }
