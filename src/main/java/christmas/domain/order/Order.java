@@ -1,7 +1,6 @@
 package christmas.domain.order;
 
 import java.time.LocalDate;
-import java.util.List;
 
 public class Order {
     private final LocalDate localDate;
@@ -16,8 +15,8 @@ public class Order {
         return orderItems.getTotalPrice();
     }
 
-    public List<OrderItem> getOrderItems() {
-        return orderItems.getOrderItems();
+    public OrderItems getOrderItems() {
+        return orderItems;
     }
 
     public LocalDate getLocalDate() {

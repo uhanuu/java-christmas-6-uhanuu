@@ -1,8 +1,8 @@
 package christmas.domain.discount;
 
-import christmas.controller.dto.ChristMaxOrderDto;
+import christmas.service.dto.DiscountDto;
 
 public interface DiscountPolicy {
 
-    int discount(ChristMaxOrderDto christMaxOrderDto);
+    int discount(DiscountDto discountDto);
 }

@@ -1,8 +1,8 @@
 package christmas.controller;
 
-import christmas.controller.dto.ChristMaxOrderDto;
+import christmas.controller.dto.OrderServiceDto;
 import christmas.domain.order.Order;
-import christmas.service.ChristMasOrderService;
+import christmas.service.OrderService;
 import christmas.util.ConvertOrderItem;
 import christmas.domain.order.OrderItem;
 import christmas.domain.order.OrderItems;
@@ -14,19 +14,19 @@ import java.util.List;
 public class OrderController {
 
     private final ConsoleInput input;
-    private final ChristMasOrderService christMasOrderService;
+    private final OrderService orderService;
 
-    public OrderController(ConsoleInput input, ChristMasOrderService christMasOrderService) {
+    public OrderController(ConsoleInput input, OrderService orderService) {
         this.input = input;
-        this.christMasOrderService = christMasOrderService;
+        this.orderService = orderService;
     }
 
-    public ChristMaxOrderDto createOrder() {
+    public OrderServiceDto createOrder() {
         LocalDate localDate = input.requestVisitDate();
         List<String> orderItemsForm = input.requestOrderItems();
         List<OrderItem> allItem = ConvertOrderItem.getAllMenu(orderItemsForm);
 
-        return ChristMaxOrderDto.of(createOrder(localDate, allItem));
+        return OrderServiceDto.of(createOrder(localDate, allItem));
     }
 
     private Order createOrder(LocalDate localDate, List<OrderItem> allItem) {
@@ -34,8 +34,8 @@ public class OrderController {
         return new Order(localDate, orderItems);
     }
 
-    public void getResult(ChristMaxOrderDto christMaxOrderDto) {
-        christMasOrderService.christMaxDiscountPrice(christMaxOrderDto);
+    public void disCountEvent(OrderServiceDto orderServiceDto) {
+        boolean b = orderService.christMaxDiscountPrice(orderServiceDto);
     }
 
 }
