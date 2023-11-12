@@ -15,23 +15,24 @@ public class OrderService {
     public OrderService(DiscountEventManager discountEventManager) {
         this.discountEventManager = discountEventManager;
     }
+//
+//    public int getTotalDiscountPrice(OrderServiceDto orderServiceDto) {
+//        LocalDate localDate = orderServiceDto.getLocalDate();
+//        OrderItems orderItems = orderServiceDto.getOrderItems();
+//
+//        DiscountDto discountDto = new DiscountDto(localDate, orderItems.getOrderItems());
+//        return discountEventManager.calculateTotalDiscountPrice(discountDto);
+//    }
 
-    public boolean christMaxDiscountPrice(OrderServiceDto orderServiceDto) {
-        LocalDate localDate = orderServiceDto.getLocalDate();
-        OrderItems orderItems = orderServiceDto.getOrderItems();
-
+    private boolean canProcessEvent(LocalDate localDate, int totalPrice) {
         if (!EventRule.isCurrentDate(localDate)) {
             return false;
         }
-        return EventRule.isTotalPriceAboveMinimum(orderItems.getTotalPrice());
+        return isTotalPriceAboveMinimum(totalPrice);
     }
 
-    public int getDisCountAmount(OrderServiceDto orderServiceDto) {
-        LocalDate localDate = orderServiceDto.getLocalDate();
-        OrderItems orderItems = orderServiceDto.getOrderItems();
-
-        DiscountDto discountDto = new DiscountDto(localDate, orderItems.getOrderItems());
-        return 0;
+    private boolean isTotalPriceAboveMinimum(int totalPrice) {
+        return EventRule.isTotalPriceAboveMinimum(totalPrice);
     }
 
 }

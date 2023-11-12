@@ -1,6 +1,7 @@
 package christmas.domain.event;
 
 import christmas.domain.event.discount.DiscountPolicy;
+import christmas.domain.event.discount.dto.DiscountInfo;
 import christmas.service.dto.DiscountDto;
 
 import java.util.List;
@@ -13,10 +14,10 @@ public class DiscountEventManager {
         this.discountPolicies = discountPolicies;
     }
 
-    public int calculateTotalDiscountPrice(final DiscountDto discountDto) {
+    public List<DiscountInfo> getDiscountInfos(final DiscountDto discountDto) {
         return discountPolicies.stream()
-                .mapToInt(policy -> policy.discount(discountDto))
-                .sum();
+                .map(policy -> policy.discount(discountDto))
+                .toList();
     }
 
 }

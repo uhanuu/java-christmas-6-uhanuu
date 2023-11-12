@@ -4,30 +4,28 @@ import java.time.LocalDate;
 
 public enum ChristmasDiscount {
 
-    CHRISTMAS_EVENT(LocalDate.of(2023, 12, 1), LocalDate.of(2023, 12, 25)),;
+    START_DISCOUNT_PRICE(1000),
+    CURRENT_PRICE(100);
 
-    private static final int START_DISCOUNT_PRICE = 1000;
-    private static final int CURRENT_PRICE = 100;
-    private final LocalDate startDayOfMonth;
-    private final LocalDate endDayOfMonth;
+    private final int discount;
+    private static final LocalDate START_DATE = LocalDate.of(2023, 12, 1);
+    private static final LocalDate END_DATE = LocalDate.of(2023, 12, 25);
 
-    ChristmasDiscount(LocalDate startDayOfMonth, LocalDate endDayOfMonth) {
-        this.startDayOfMonth = startDayOfMonth;
-        this.endDayOfMonth = endDayOfMonth;
+    ChristmasDiscount(int discount) {
+        this.discount = discount;
     }
 
     public static boolean isChristmasEvent(LocalDate localDate) {
         int dayOfMonth = localDate.getDayOfMonth();
-        int endDayOfMonth = CHRISTMAS_EVENT.endDayOfMonth.getDayOfMonth();
+        int endDayOfMonth = END_DATE.getDayOfMonth();
         
         return dayOfMonth <= endDayOfMonth;
     }
     
     public static int calculateChristmasDiscountPrice(LocalDate localDate) {
-        LocalDate startDayOfMont = CHRISTMAS_EVENT.startDayOfMonth;
-        int daysDifference = localDate.compareTo(startDayOfMont);
+        int daysDifference = localDate.compareTo(START_DATE);
 
-        return (daysDifference * CURRENT_PRICE) + START_DISCOUNT_PRICE;
+        return (daysDifference * CURRENT_PRICE.discount) + START_DISCOUNT_PRICE.discount;
     }
 
 }

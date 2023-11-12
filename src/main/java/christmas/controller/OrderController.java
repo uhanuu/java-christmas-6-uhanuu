@@ -35,7 +35,6 @@ public class OrderController {
     }
 
     public void disCountEvent(OrderServiceDto orderServiceDto) {
-        boolean b = orderService.christMaxDiscountPrice(orderServiceDto);
     }
 
 }

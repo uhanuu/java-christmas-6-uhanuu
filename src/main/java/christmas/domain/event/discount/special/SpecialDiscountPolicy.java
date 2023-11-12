@@ -1,6 +1,7 @@
 package christmas.domain.event.discount.special;
 
 import christmas.domain.event.discount.DiscountPolicy;
+import christmas.domain.event.discount.dto.DiscountInfo;
 import christmas.service.dto.DiscountDto;
 
 import java.time.LocalDate;
@@ -10,14 +11,18 @@ import static christmas.domain.event.discount.special.SpecialDiscount.CALENDAR_S
 
 public class SpecialDiscountPolicy implements DiscountPolicy {
 
+    private static final String SPECIAL_DISCOUNT_FORMAT = "특별 할인 %s:";
     private static final int DEFAULT_DISCOUNT = 0;
 
     @Override
-    public int discount(DiscountDto discountDto) {
+    public DiscountInfo discount(DiscountDto discountDto) {
         LocalDate localDate = discountDto.getLocalDate();
+
         if (isCalendarStarEvent(localDate)) {
-            return CALENDAR_STAR_EVENT.getDiscountPrice();
+            int specialDiscountPrice = CALENDAR_STAR_EVENT.getDiscountPrice();
+            return createInfo(SPECIAL_DISCOUNT_FORMAT, specialDiscountPrice);
         }
-        return DEFAULT_DISCOUNT;
+
+        return createInfo(SPECIAL_DISCOUNT_FORMAT, DEFAULT_DISCOUNT);
     }
 }
