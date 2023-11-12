@@ -15,7 +15,7 @@ public class SpecialDiscountPolicy implements DiscountPolicy {
     private static final int DEFAULT_DISCOUNT = 0;
 
     @Override
-    public DiscountInfo discount(DiscountDto discountDto) {
+    public DiscountInfo getDiscountInfo(DiscountDto discountDto) {
         LocalDate localDate = discountDto.getLocalDate();
 
         if (isCalendarStarEvent(localDate)) {

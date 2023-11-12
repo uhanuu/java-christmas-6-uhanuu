@@ -1,6 +1,7 @@
 package christmas.domain.event.discount.week;
 
 import christmas.domain.event.discount.DiscountPolicy;
+import christmas.domain.event.discount.dto.DiscountInfo;
 import christmas.domain.order.OrderItem;
 import christmas.service.dto.DiscountDto;
 import christmas.util.ConvertOrderItem;
@@ -28,9 +29,9 @@ class DayOfWeekDiscountPolicyTest {
         DiscountDto requestDto = createRequestDto(date, orderItems);
         int result = 2023 * 6;
         // when
-        int discount = discountPolicy.discount(requestDto);
+        DiscountInfo discountInfo = discountPolicy.getDiscountInfo(requestDto);
         // then
-        assertThat(result).isEqualTo(discount);
+        assertThat(result).isEqualTo(discountInfo.getDiscount());
     }
 
     @ParameterizedTest(name = "{0}일은 주말이 아닌 평일로 디저트음식들이 수량마다 2023원이 할인된다.")
@@ -44,9 +45,9 @@ class DayOfWeekDiscountPolicyTest {
         DiscountDto requestDto = createRequestDto(date, orderItems);
         int result = 2023 * 8;
         // when
-        int discount = discountPolicy.discount(requestDto);
+        DiscountInfo discountInfo = discountPolicy.getDiscountInfo(requestDto);
         // then
-        assertThat(result).isEqualTo(discount);
+        assertThat(result).isEqualTo(discountInfo.getDiscount());
     }
 
     private List<OrderItem> createOrderItems(List<String> orderMainItems) {

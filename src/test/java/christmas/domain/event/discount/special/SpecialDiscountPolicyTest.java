@@ -1,11 +1,11 @@
 package christmas.domain.event.discount.special;
 
 import christmas.domain.event.discount.DiscountPolicy;
+import christmas.domain.event.discount.dto.DiscountInfo;
 import christmas.domain.order.OrderItem;
 import christmas.service.dto.DiscountDto;
 import christmas.util.ConvertOrderItem;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -13,7 +13,6 @@ import java.time.LocalDate;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class SpecialDiscountPolicyTest {
 
@@ -28,9 +27,9 @@ class SpecialDiscountPolicyTest {
         LocalDate date = createDate(dayOfMonth);
         DiscountDto requestDto = createRequestDto(date);
         // when
-        int discount = discountPolicy.discount(requestDto);
+        DiscountInfo discountInfo = discountPolicy.getDiscountInfo(requestDto);
         // then
-        assertThat(discount).isEqualTo(result);
+        assertThat(discountInfo.getDiscount()).isEqualTo(result);
     }
 
     @ParameterizedTest(name = "{0}일은 event 날이 아니다.")
@@ -42,9 +41,9 @@ class SpecialDiscountPolicyTest {
         LocalDate date = createDate(dayOfMonth);
         DiscountDto requestDto = createRequestDto(date);
         // when
-        int discount = discountPolicy.discount(requestDto);
+        DiscountInfo discountInfo = discountPolicy.getDiscountInfo(requestDto);
         // then
-        assertThat(discount).isEqualTo(result);
+        assertThat(discountInfo.getDiscount()).isEqualTo(result);
     }
 
     private DiscountDto createRequestDto(LocalDate localDate) {

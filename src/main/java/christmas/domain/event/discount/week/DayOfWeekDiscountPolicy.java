@@ -18,7 +18,7 @@ public class DayOfWeekDiscountPolicy implements DiscountPolicy {
     private static final String WEEKEND_DISCOUNT_FORMAT = "주말 할인 %s:";
 
     @Override
-    public DiscountInfo discount(DiscountDto discountDto) {
+    public DiscountInfo getDiscountInfo(DiscountDto discountDto) {
         LocalDate localDate = discountDto.getLocalDate();
         List<OrderItem> orderItems = discountDto.getOrderItems();
 

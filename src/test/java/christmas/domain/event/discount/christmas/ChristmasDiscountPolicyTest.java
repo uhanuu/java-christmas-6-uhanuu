@@ -1,6 +1,7 @@
 package christmas.domain.event.discount.christmas;
 
 import christmas.domain.event.discount.DiscountPolicy;
+import christmas.domain.event.discount.dto.DiscountInfo;
 import christmas.domain.order.OrderItem;
 import christmas.service.dto.DiscountDto;
 import christmas.util.ConvertOrderItem;
@@ -25,9 +26,9 @@ class ChristmasDiscountPolicyTest {
         //시작일인 12월 1일에 1,000원, 2일에 1,100원, ..., 25일엔 3,400원 할인
         int result = 3400;
         // when
-        int discount = discountPolicy.discount(requestDto);
+        DiscountInfo discountInfo = discountPolicy.getDiscountInfo(requestDto);
         // then
-        assertThat(discount).isEqualTo(result);
+        assertThat(discountInfo.getDiscount()).isEqualTo(result);
     }
 
     @Test
@@ -37,9 +38,9 @@ class ChristmasDiscountPolicyTest {
         LocalDate date = createDate(26);
         DiscountDto requestDto = createRequestDto(date);
         // when
-        int discount = discountPolicy.discount(requestDto);
+        DiscountInfo discountInfo = discountPolicy.getDiscountInfo(requestDto);
         // then
-        assertThat(discount).isZero();
+        assertThat(discountInfo.getDiscount()).isZero();
     }
 
     private DiscountDto createRequestDto(LocalDate localDate) {

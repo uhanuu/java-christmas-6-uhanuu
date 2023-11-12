@@ -16,7 +16,7 @@ public class DiscountEventManager {
 
     public List<DiscountInfo> getDiscountInfos(final DiscountDto discountDto) {
         return discountPolicies.stream()
-                .map(policy -> policy.discount(discountDto))
+                .map(policy -> policy.getDiscountInfo(discountDto))
                 .toList();
     }
 

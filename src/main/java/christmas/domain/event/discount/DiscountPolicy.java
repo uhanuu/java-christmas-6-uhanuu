@@ -5,7 +5,7 @@ import christmas.service.dto.DiscountDto;
 
 public interface DiscountPolicy {
 
-    DiscountInfo discount(DiscountDto discountDto);
+    DiscountInfo getDiscountInfo(DiscountDto discountDto);
 
     default DiscountInfo createInfo(String message, int discount) {
         return new DiscountInfo(message, discount);
