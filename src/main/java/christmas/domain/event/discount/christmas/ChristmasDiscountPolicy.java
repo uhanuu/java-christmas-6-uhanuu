@@ -8,7 +8,7 @@ import java.time.LocalDate;
 
 public class ChristmasDiscountPolicy implements DiscountPolicy {
 
-    private static final String CHRISTMAS_DISCOUNT_FORMAT = "크리스마스 디데이 할인 %s:";
+    private static final String CHRISTMAS_DISCOUNT_FORMAT = "크리스마스 디데이 할인: %s";
     private static final int DEFAULT_DISCOUNT = 0;
 
     @Override

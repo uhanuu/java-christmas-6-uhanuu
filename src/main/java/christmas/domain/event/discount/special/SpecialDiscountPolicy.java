@@ -11,7 +11,7 @@ import static christmas.domain.event.discount.special.SpecialDiscount.CALENDAR_S
 
 public class SpecialDiscountPolicy implements DiscountPolicy {
 
-    private static final String SPECIAL_DISCOUNT_FORMAT = "특별 할인 %s:";
+    private static final String SPECIAL_DISCOUNT_FORMAT = "특별 할인: %s";
     private static final int DEFAULT_DISCOUNT = 0;
 
     @Override

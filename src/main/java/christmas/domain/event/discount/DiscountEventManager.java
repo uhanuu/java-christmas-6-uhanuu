@@ -1,6 +1,6 @@
-package christmas.domain.event;
+package christmas.domain.event.discount;
 
-import christmas.domain.event.discount.DiscountPolicy;
+import christmas.domain.event.EventRule;
 import christmas.domain.event.discount.dto.DiscountInfo;
 import christmas.service.dto.DiscountDto;
 
@@ -31,11 +31,13 @@ public class DiscountEventManager {
         if (!EventRule.isCurrentDate(localDate)) {
             return false;
         }
-        return isTotalPriceAboveMinimum(totalPrice);
+        return EventRule.isTotalPriceAboveMinimum(totalPrice);
     }
 
-    private boolean isTotalPriceAboveMinimum(int totalPrice) {
-        return EventRule.isTotalPriceAboveMinimum(totalPrice);
+    public int totalDiscountPrice(List<DiscountInfo> discountInfos) {
+        return discountInfos.stream()
+                .mapToInt(DiscountInfo::getDiscount)
+                .sum();
     }
 
 }

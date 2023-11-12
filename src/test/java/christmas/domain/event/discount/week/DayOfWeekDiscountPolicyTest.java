@@ -55,7 +55,7 @@ class DayOfWeekDiscountPolicyTest {
     }
 
     private DiscountDto createRequestDto(LocalDate localDate, List<OrderItem> orderItems) {
-        return new DiscountDto(localDate, orderItems);
+        return new DiscountDto(localDate, orderItems, 1);
     }
 
     private LocalDate createDate(int dayOfMonth) {

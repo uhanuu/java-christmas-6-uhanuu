@@ -48,7 +48,7 @@ class SpecialDiscountPolicyTest {
 
     private DiscountDto createRequestDto(LocalDate localDate) {
         List<OrderItem> orderItem = createOrderItem();
-        return new DiscountDto(localDate, orderItem);
+        return new DiscountDto(localDate, orderItem, 1);
     }
 
     private List<OrderItem> createOrderItem() {

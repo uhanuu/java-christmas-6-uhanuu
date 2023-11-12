@@ -1,7 +1,7 @@
 package christmas.service;
 
-import christmas.controller.dto.OrderServiceDto;
-import christmas.domain.event.DiscountEventManager;
+import christmas.controller.dto.DiscountOrderServiceDto;
+import christmas.domain.event.EventManager;
 import christmas.domain.event.discount.dto.DiscountInfo;
 import christmas.domain.order.OrderItems;
 import christmas.service.dto.DiscountDto;
@@ -12,23 +12,25 @@ import java.util.List;
 
 public class OrderService {
 
-    private final DiscountEventManager discountEventManager;
+    private final EventManager eventManager;
 
-    public OrderService(DiscountEventManager discountEventManager) {
-        this.discountEventManager = discountEventManager;
+    public OrderService(EventManager eventManager) {
+        this.eventManager = eventManager;
     }
 
-    public List<DiscountInfo> getDiscountInfos(OrderServiceDto orderServiceDto) {
-        LocalDate localDate = orderServiceDto.getLocalDate();
-        OrderItems orderItems = orderServiceDto.getOrderItems();
+    public List<DiscountInfo> getDiscountInfos(DiscountOrderServiceDto discountOrderServiceDto) {
+        LocalDate localDate = discountOrderServiceDto.getLocalDate();
+        OrderItems orderItems = discountOrderServiceDto.getOrderItems();
 
         DiscountDto discountDto = createDiscountDto(localDate, orderItems);
-        return discountEventManager.getDiscountInfos(discountDto);
+        return eventManager.getDiscountInfos(discountDto);
     }
 
-    private static DiscountDto createDiscountDto(LocalDate localDate, OrderItems orderItems) {
-        DiscountDto discountDto = new DiscountDto(localDate, orderItems.getOrderItems(), orderItems.getTotalPrice());
-        return discountDto;
+    private DiscountDto createDiscountDto(LocalDate localDate, OrderItems orderItems) {
+        return new DiscountDto(localDate, orderItems.getOrderItems(), orderItems.getTotalPrice());
     }
 
+    public int getTotalDiscountPrice(List<DiscountInfo> discountInfos) {
+        return eventManager.totalDiscountPrice(discountInfos);
+    }
 }

@@ -14,8 +14,8 @@ import static christmas.domain.event.discount.week.WeekdayWeekendDiscount.calcul
 
 public class DayOfWeekDiscountPolicy implements DiscountPolicy {
 
-    private static final String WEEKDAY_DISCOUNT_FORMAT = "평일 할인 %s:";
-    private static final String WEEKEND_DISCOUNT_FORMAT = "주말 할인 %s:";
+    private static final String WEEKDAY_DISCOUNT_FORMAT = "평일 할인: %s";
+    private static final String WEEKEND_DISCOUNT_FORMAT = "주말 할인: %s";
 
     @Override
     public DiscountInfo getDiscountInfo(DiscountDto discountDto) {

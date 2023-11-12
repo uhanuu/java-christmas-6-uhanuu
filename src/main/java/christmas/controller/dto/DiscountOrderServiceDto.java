@@ -5,17 +5,17 @@ import christmas.domain.order.OrderItems;
 
 import java.time.LocalDate;
 
-public class OrderServiceDto {
+public class DiscountOrderServiceDto {
 
     private final LocalDate localDate;
     private final OrderItems orderItems;
-    private OrderServiceDto(LocalDate localDate, OrderItems orderItems) {
+    private DiscountOrderServiceDto(LocalDate localDate, OrderItems orderItems) {
         this.localDate = localDate;
         this.orderItems = orderItems;
     }
 
-    public static OrderServiceDto of(Order order) {
-        return new OrderServiceDto(
+    public static DiscountOrderServiceDto of(Order order) {
+        return new DiscountOrderServiceDto(
                 order.getLocalDate(),
                 order.getOrderItems());
     }
