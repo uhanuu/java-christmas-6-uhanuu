@@ -8,10 +8,12 @@ import java.util.List;
 public class DiscountDto {
     private final LocalDate localDate;
     private final List<OrderItem> orderItems;
+    private final int totalPrice;
 
-    public DiscountDto(LocalDate localDate, List<OrderItem> orderItems) {
+    public DiscountDto(LocalDate localDate, List<OrderItem> orderItems, int totalPrice) {
         this.localDate = localDate;
         this.orderItems = orderItems;
+        this.totalPrice = totalPrice;
     }
 
     public LocalDate getLocalDate() {
@@ -20,5 +22,9 @@ public class DiscountDto {
 
     public List<OrderItem> getOrderItems() {
         return orderItems;
+    }
+
+    public int getTotalPrice() {
+        return totalPrice;
     }
 }

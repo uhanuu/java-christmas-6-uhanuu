@@ -1,4 +1,4 @@
-package christmas.service;
+package christmas.domain.event;
 
 import java.time.LocalDate;
 import java.time.Month;

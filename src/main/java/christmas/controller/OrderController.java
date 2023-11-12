@@ -1,6 +1,7 @@
 package christmas.controller;
 
 import christmas.controller.dto.OrderServiceDto;
+import christmas.domain.event.discount.dto.DiscountInfo;
 import christmas.domain.order.Order;
 import christmas.service.OrderService;
 import christmas.util.ConvertOrderItem;
@@ -35,6 +36,8 @@ public class OrderController {
     }
 
     public void disCountEvent(OrderServiceDto orderServiceDto) {
+        List<DiscountInfo> discountInfos = orderService.getDiscountInfos(orderServiceDto);
     }
+
 
 }
