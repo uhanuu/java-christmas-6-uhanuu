@@ -46,7 +46,7 @@ class OrderItemsTest {
         assertThatThrownBy(() -> new OrderItems(List.of(orderItem1, orderItem2)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
-
+    
 
     private OrderItems createOrderItems(OrderItem... items) {
         return new OrderItems(List.of(items));

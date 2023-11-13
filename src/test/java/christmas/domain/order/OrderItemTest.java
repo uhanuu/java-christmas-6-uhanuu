@@ -33,6 +33,42 @@ class OrderItemTest {
         assertThat(isBeverage).isTrue();
     }
 
+    @Test
+    @DisplayName("메인음식은 음료가 아니다.")
+    public void isBeverageByMainMenu() {
+        // given
+        MenuInfo christmasPasta = MenuInfo.CHRISTMAS_PASTA;
+        OrderItem orderItem = createOrderItem(christmasPasta, 1);
+        // when
+        boolean isBeverage = orderItem.isBeverage();
+        // then
+        assertThat(isBeverage).isFalse();
+    }
+
+    @Test
+    @DisplayName("디저트음식은 음료가 아니다.")
+    public void isBeverageByDesert() {
+        // given
+        MenuInfo iceCream = MenuInfo.ICE_CREAM;
+        OrderItem orderItem = createOrderItem(iceCream, 1);
+        // when
+        boolean isBeverage = orderItem.isBeverage();
+        // then
+        assertThat(isBeverage).isFalse();
+    }
+
+    @Test
+    @DisplayName("애피타이저 음료가 아니다.")
+    public void isBeverageByAppetizer() {
+        // given
+        MenuInfo caesarSalad = MenuInfo.CAESAR_SALAD;
+        OrderItem orderItem = createOrderItem(caesarSalad, 1);
+        // when
+        boolean isBeverage = orderItem.isBeverage();
+        // then
+        assertThat(isBeverage).isFalse();
+    }
+
     private OrderItem createOrderItem(MenuInfo menuInfo, int quantity) {
         return new OrderItem(menuInfo, quantity);
     }
