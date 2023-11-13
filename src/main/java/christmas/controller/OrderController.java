@@ -61,21 +61,35 @@ public class OrderController {
 
     private OrderBenefitPrice displayEventDetails(Order order) {
         //증정 메뉴
+        Optional<GiftItem> giftItem = displayGiftMenu(order);
+        //혜택 내역
+        List<DiscountInfo> discountInfos = displayBenefitDetails(order, giftItem);
+        //총 혜택 금액
+        return displayTotalBenefitPrice(giftItem, discountInfos);
+    }
+
+    private Optional<GiftItem> displayGiftMenu(Order order) {
         Optional<GiftItem> giftItem = orderService.getGiftItem(order.getItemsTotalPrice());
         output.printGiftMenu(giftItem);
-        //혜택 내역
+        return giftItem;
+    }
+
+    private List<DiscountInfo> displayBenefitDetails(Order order, Optional<GiftItem> giftItem) {
         List<DiscountInfo> discountInfos = orderService.getDiscountInfos(order);
         List<DiscountInfoWithGiftItemDTO> discountInfosWithGiftItem =
                 orderService.addGiftItemToDiscountInfos(discountInfos, giftItem);
+
         output.printBenefitDetails(discountInfosWithGiftItem);
-        //총 혜택 금액
+        return discountInfos;
+    }
+
+    private OrderBenefitPrice displayTotalBenefitPrice(Optional<GiftItem> giftItem, List<DiscountInfo> discountInfos) {
         OrderBenefitPrice benefitPrice = getTotalBenefitPrice(discountInfos, giftItem);
         output.printTotalBenefitPrice(benefitPrice.getTotalBenefitPrice());
         return benefitPrice;
     }
 
     private OrderBenefitPrice getTotalBenefitPrice(List<DiscountInfo> discountInfos, Optional<GiftItem> giftItem) {
-        //증정 이벤트 포함 totalPrice가 반환된다.
         int totalDiscountPrice = orderService.getTotalDiscountPrice(discountInfos);
         int giftItemPrice = 0;
 
@@ -86,7 +100,6 @@ public class OrderController {
     }
 
     private void displayPaymentResult(OrderBenefitPrice orderBenefitPrice, int totalOrderPrice) {
-        // 증정 상품을 제거한 금액
         output.printEstimatedPayment(totalOrderPrice - orderBenefitPrice.getDiscountPrice());
         String badgeName = getBadgeName(orderBenefitPrice.getTotalBenefitPrice());
         output.printDecemberEventBadge(badgeName);

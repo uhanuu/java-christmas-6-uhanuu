@@ -20,8 +20,7 @@ public class InputValidator {
         try {
             return LocalDate.of(YEAR, MONTH, monthOfDate);
         } catch (DateTimeException e) {
-            throw new IllegalArgumentException(
-                    String.format(ErrorMessage.DATE_FORMAT_ERROR_MESSAGE.getMessage(), YEAR, MONTH, monthOfDate));
+            throw new IllegalArgumentException(ErrorMessage.DATE_FORMAT_ERROR_MESSAGE.getMessage());
         }
     }
 
@@ -29,7 +28,7 @@ public class InputValidator {
         try {
             return Integer.parseInt(monthOfDate);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ErrorMessage.NUMBER_FORMAT_ERROR_MESSAGE.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.DATE_FORMAT_ERROR_MESSAGE.getMessage());
         }
     }
 
