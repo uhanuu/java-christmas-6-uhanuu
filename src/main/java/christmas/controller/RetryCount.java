@@ -3,7 +3,7 @@ package christmas.controller;
 import christmas.constants.ErrorPrefix;
 
 public enum RetryCount {
-    MAX_RETRY_COUNT(5, "재시도 횟수를 초과했습니다."),;
+    MAX_RETRY_COUNT(5, "재시도 횟수를 초과했습니다.");
 
     private final int count;
     private final String errorMessage;
