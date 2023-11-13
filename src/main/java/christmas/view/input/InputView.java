@@ -15,6 +15,7 @@ public class InputView implements ConsoleInput{
         this.inputValidator = inputValidator;
     }
 
+    @Override
     public LocalDate requestVisitDate() {
         printVisitDateMessage();
         int monthOfDate = inputValidator.parseInt(readLine());
@@ -26,6 +27,7 @@ public class InputView implements ConsoleInput{
         System.out.println(InputMessage.REQUEST_DATE_MESSAGE.getMessage());
     }
 
+    @Override
     public List<String> requestOrderItems() {
         printOrderItemsMessage();
         List<String> requestOrderItems = List.of(readLine().replaceAll(" ","").split(","));

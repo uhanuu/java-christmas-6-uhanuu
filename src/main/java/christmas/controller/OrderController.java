@@ -17,20 +17,19 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
-public class OrderController {
+public class OrderController extends RetryController{
 
-    private final ConsoleInput input;
     private final OrderService orderService;
     private final ConsoleOutputView output;
 
     public OrderController(ConsoleInput input, OrderService orderService, ConsoleOutputView output) {
-        this.input = input;
+        super(input);
         this.orderService = orderService;
         this.output = output;
     }
 
     public void run() {
-        Order order = createOrder();
+        Order order = run(() -> createOrder());
         displayOrderDetails(order);
         OrderBenefitPrice orderBenefitPrice = displayEventDetails(order);
         displayPaymentResult(orderBenefitPrice, order.getItemsTotalPrice());

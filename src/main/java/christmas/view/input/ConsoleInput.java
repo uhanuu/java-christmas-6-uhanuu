@@ -11,6 +11,11 @@ public interface ConsoleInput {
         return Console.readLine();
     }
 
+    default void printErrorMessage(RuntimeException e) {
+        System.out.println(e.getMessage());
+        System.out.println();
+    }
+
     LocalDate requestVisitDate();
 
     List<String> requestOrderItems();
