@@ -1,9 +1,10 @@
 package christmas.view.input;
 
-import christmas.view.input.message.InputMessage;
+import christmas.view.input.constants.InputMessage;
 import christmas.view.input.validator.InputValidator;
 
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.List;
 
 public class InputView implements ConsoleInput{
@@ -27,7 +28,7 @@ public class InputView implements ConsoleInput{
 
     public List<String> requestOrderItems() {
         printOrderItemsMessage();
-        List<String> requestOrderItems = List.of(readLine().trim().split(","));
+        List<String> requestOrderItems = List.of(readLine().replaceAll(" ","").split(","));
         validateItems(requestOrderItems);
         return requestOrderItems;
     }
@@ -40,4 +41,5 @@ public class InputView implements ConsoleInput{
         inputValidator.validateOrderItemsForm(requestOrderItems);
         inputValidator.validateOrderItemsSize(requestOrderItems);
     }
+
 }

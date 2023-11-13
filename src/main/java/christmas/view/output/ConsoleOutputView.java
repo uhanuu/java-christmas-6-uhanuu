@@ -3,13 +3,14 @@ package christmas.view.output;
 import christmas.controller.dto.OrderMenuDto;
 import christmas.domain.event.item.GiftItem;
 import christmas.service.dto.DiscountInfoWithGiftItemDTO;
+import christmas.view.output.constants.OutputMessage;
 
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
-import static christmas.view.output.PriceFormat.BENEFIT_PRICE_FORMAT;
-import static christmas.view.output.PriceFormat.ORDER_PRICE_FORMAT;
+import static christmas.view.output.constants.PriceFormat.BENEFIT_PRICE_FORMAT;
+import static christmas.view.output.constants.PriceFormat.ORDER_PRICE_FORMAT;
 
 public class ConsoleOutputView {
 

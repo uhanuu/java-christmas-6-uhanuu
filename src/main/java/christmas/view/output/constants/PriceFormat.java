@@ -1,4 +1,4 @@
-package christmas.view.output;
+package christmas.view.output.constants;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;

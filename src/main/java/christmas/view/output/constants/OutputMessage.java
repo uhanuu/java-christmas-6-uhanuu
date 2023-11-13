@@ -1,4 +1,4 @@
-package christmas.view.output;
+package christmas.view.output.constants;
 
 public enum OutputMessage {
     MENU_FORMAT("%s %s개\n"),

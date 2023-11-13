@@ -1,5 +1,7 @@
 package christmas.view.input.validator;
 
+import christmas.view.input.constants.ErrorMessage;
+
 import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.util.List;
@@ -8,6 +10,7 @@ import java.util.regex.Pattern;
 
 public class InputValidator {
 
+    //0-9로 바꾸고 다음에 숫자 변경할 때 0이면 예외처리하기
     private static final Pattern ORDER_ITEMS_PATTERN = Pattern.compile("([가-힣]+)-([1-9][0-9]?)");
 
     private final int YEAR = 2023;
@@ -17,7 +20,8 @@ public class InputValidator {
         try {
             return LocalDate.of(YEAR, MONTH, monthOfDate);
         } catch (DateTimeException e) {
-            throw new IllegalArgumentException(String.format("%d년 %d월은 %d일이 없습니다.", YEAR, MONTH, monthOfDate));
+            throw new IllegalArgumentException(
+                    String.format(ErrorMessage.DATE_FORMAT_ERROR_MESSAGE.getMessage(), YEAR, MONTH, monthOfDate));
         }
     }
 
@@ -25,7 +29,7 @@ public class InputValidator {
         try {
             return Integer.parseInt(monthOfDate);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("숫자만 입력 가능합니다.");
+            throw new IllegalArgumentException(ErrorMessage.NUMBER_FORMAT_ERROR_MESSAGE.getMessage());
         }
     }
 
@@ -33,15 +37,14 @@ public class InputValidator {
         for (String orderItem : requestOrderItems) {
             Matcher matcher = ORDER_ITEMS_PATTERN.matcher(orderItem);
             if (!matcher.matches()) {
-                throw new IllegalArgumentException("주문 상품의 입력이 올바르지 않습니다.");
+                throw new IllegalArgumentException(ErrorMessage.ORDER_MENU_FORMAT_ERROR_MESSAGE.getMessage());
             }
         }
     }
 
     public void validateOrderItemsSize(List<String> requestOrderItems) {
-        int itemSize = requestOrderItems.size();
-        if (0 > itemSize) {
-            throw new IllegalArgumentException("주문 상품의 개수는 1개 이상입니다.");
+        if (requestOrderItems.isEmpty()) {
+            throw new IllegalArgumentException(ErrorMessage.ORDER_MENU_FORMAT_ERROR_MESSAGE.getMessage());
         }
     }
 }
