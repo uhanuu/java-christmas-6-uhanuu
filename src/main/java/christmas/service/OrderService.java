@@ -7,6 +7,7 @@ import christmas.domain.order.Order;
 import christmas.domain.order.OrderItems;
 import christmas.service.dto.DiscountDto;
 import christmas.service.dto.DiscountInfoWithGiftItemDTO;
+import christmas.service.dto.DiscountItemDto;
 
 import java.time.LocalDate;
 import java.util.Collections;
@@ -32,10 +33,15 @@ public class OrderService {
     }
 
     private DiscountDto createDiscountDto(LocalDate localDate, OrderItems orderItems) {
-        return new DiscountDto(localDate, orderItems.getOrderItems(), orderItems.getTotalPrice());
+        List<DiscountItemDto> discountItemsDto = orderItems.getOrderItems().stream()
+                .map(DiscountItemDto::of)
+                .toList();
+
+        return new DiscountDto(localDate, discountItemsDto, orderItems.getTotalPrice());
     }
 
     public int getTotalDiscountPrice(List<DiscountInfo> discountInfos) {
+
         return eventManager.totalDiscountPrice(discountInfos);
     }
 

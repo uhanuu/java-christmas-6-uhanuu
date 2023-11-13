@@ -4,6 +4,7 @@ import christmas.domain.event.discount.DiscountPolicy;
 import christmas.domain.event.discount.dto.DiscountInfo;
 import christmas.domain.order.OrderItem;
 import christmas.service.dto.DiscountDto;
+import christmas.service.dto.DiscountItemDto;
 import christmas.util.ConvertOrderItem;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -24,7 +25,7 @@ class DayOfWeekDiscountPolicyTest {
     public void isCalendarStarEventTrue(int dayOfMonth) {
         //given
         List<String> orderMainItemsForm = List.of("티본스테이크-3", "바비큐립-3", "제로콜라-2");
-        List<OrderItem> orderItems = createOrderItems(orderMainItemsForm);
+        List<DiscountItemDto> orderItems = createOrderItems(orderMainItemsForm);
         LocalDate date = createDate(dayOfMonth);
         DiscountDto requestDto = createRequestDto(date, orderItems);
         int result = 2023 * 6;
@@ -40,7 +41,7 @@ class DayOfWeekDiscountPolicyTest {
     public void isCalendarStarEventFalse(int dayOfMonth) {
         //given
         List<String> orderMainItemsForm = List.of("초코케이크-4", "아이스크림-4", "제로콜라-2");
-        List<OrderItem> orderItems = createOrderItems(orderMainItemsForm);
+        List<DiscountItemDto> orderItems = createOrderItems(orderMainItemsForm);
         LocalDate date = createDate(dayOfMonth);
         DiscountDto requestDto = createRequestDto(date, orderItems);
         int result = 2023 * 8;
@@ -50,12 +51,16 @@ class DayOfWeekDiscountPolicyTest {
         assertThat(result).isEqualTo(discountInfo.getDiscount());
     }
 
-    private List<OrderItem> createOrderItems(List<String> orderMainItems) {
-        return ConvertOrderItem.getAllMenu(orderMainItems);
+    private DiscountDto createRequestDto(LocalDate localDate, List<DiscountItemDto> orderItems) {
+        return new DiscountDto(localDate, orderItems, 1);
     }
 
-    private DiscountDto createRequestDto(LocalDate localDate, List<OrderItem> orderItems) {
-        return new DiscountDto(localDate, orderItems, 1);
+    private List<DiscountItemDto> createOrderItems(List<String> orderMainItems) {
+        List<OrderItem> allMenu = ConvertOrderItem.getAllMenu(orderMainItems);
+
+        return allMenu.stream()
+                .map(DiscountItemDto::of)
+                .toList();
     }
 
     private LocalDate createDate(int dayOfMonth) {

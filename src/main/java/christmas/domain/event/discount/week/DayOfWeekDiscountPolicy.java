@@ -4,6 +4,7 @@ import christmas.domain.event.discount.DiscountPolicy;
 import christmas.domain.event.discount.dto.DiscountInfo;
 import christmas.domain.order.OrderItem;
 import christmas.service.dto.DiscountDto;
+import christmas.service.dto.DiscountItemDto;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -20,7 +21,7 @@ public class DayOfWeekDiscountPolicy implements DiscountPolicy {
     @Override
     public DiscountInfo getDiscountInfo(DiscountDto discountDto) {
         LocalDate localDate = discountDto.getLocalDate();
-        List<OrderItem> orderItems = discountDto.getOrderItems();
+        List<DiscountItemDto> orderItems = discountDto.getOrderItems();
 
         if (isEventWeekend(localDate)){
             int weekendDiscountPrice = calculateWeekendMainDiscount(orderItems);

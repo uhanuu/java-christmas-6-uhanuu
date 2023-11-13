@@ -2,6 +2,7 @@ package christmas.domain.event.discount.week;
 
 import christmas.domain.order.OrderItem;
 import christmas.menu.MenuType;
+import christmas.service.dto.DiscountItemDto;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
@@ -22,14 +23,14 @@ public enum WeekdayWeekendDiscount {
         return dayOfWeek == DayOfWeek.FRIDAY || dayOfWeek == DayOfWeek.SATURDAY;
     }
 
-    public static int calculateWeekendMainDiscount(List<OrderItem> orderItems) {
+    public static int calculateWeekendMainDiscount(List<DiscountItemDto> orderItems) {
         return orderItems.stream()
                 .filter(item -> MenuType.isMainMenu(item.getMenuInfo()))
                 .mapToInt(item -> item.getQuantity() * WEEKEND_EVENT.discount)
                 .sum();
     }
 
-    public static int calculateWeekdayDessertDiscount(List<OrderItem> orderItems) {
+    public static int calculateWeekdayDessertDiscount(List<DiscountItemDto> orderItems) {
         return orderItems.stream()
                 .filter(item -> MenuType.isDesert(item.getMenuInfo()))
                 .mapToInt(item -> item.getQuantity() * WEEKDAY_EVENT.discount)

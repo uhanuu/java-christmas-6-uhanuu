@@ -1,6 +1,7 @@
 package christmas.domain.event.discount.week;
 
 import christmas.domain.order.OrderItem;
+import christmas.service.dto.DiscountItemDto;
 import christmas.util.ConvertOrderItem;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -43,7 +44,7 @@ class WeekdayWeekendDiscountTest {
     public void calculateWeekendMainDiscount() {
         // given
         List<String> orderMainItemsForm = List.of("티본스테이크-1", "바비큐립-1", "제로콜라-2");
-        List<OrderItem> mainOrderItems = createOrderItems(orderMainItemsForm);
+        List<DiscountItemDto> mainOrderItems = createOrderItems(orderMainItemsForm);
         //메인 음식 2개
         int result = 2023 * 2;
         // when
@@ -57,7 +58,7 @@ class WeekdayWeekendDiscountTest {
     public void calculateWeekendDesertDiscount() {
         // given
         List<String> orderMainItemsForm = List.of("초코케이크-1", "아이스크림-1", "제로콜라-2");
-        List<OrderItem> mainOrderItems = createOrderItems(orderMainItemsForm);
+        List<DiscountItemDto> mainOrderItems = createOrderItems(orderMainItemsForm);
         //메인 음식 2개
         int result = 2023 * 2;
         // when
@@ -70,8 +71,11 @@ class WeekdayWeekendDiscountTest {
         return LocalDate.of(2023, 12, dayOfMonth);
     }
 
-    private List<OrderItem> createOrderItems(List<String> orderMainItems) {
-        return ConvertOrderItem.getAllMenu(orderMainItems);
+    private List<DiscountItemDto> createOrderItems(List<String> orderMainItems) {
+        List<OrderItem> allMenu = ConvertOrderItem.getAllMenu(orderMainItems);
+        return allMenu.stream()
+                .map(DiscountItemDto::of)
+                .toList();
     }
 
 }

@@ -4,6 +4,7 @@ import christmas.domain.event.discount.DiscountPolicy;
 import christmas.domain.event.discount.dto.DiscountInfo;
 import christmas.domain.order.OrderItem;
 import christmas.service.dto.DiscountDto;
+import christmas.service.dto.DiscountItemDto;
 import christmas.util.ConvertOrderItem;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -44,13 +45,17 @@ class ChristmasDiscountPolicyTest {
     }
 
     private DiscountDto createRequestDto(LocalDate localDate) {
-        List<OrderItem> orderItem = createOrderItem();
+        List<DiscountItemDto> orderItem = createOrderItem();
         return new DiscountDto(localDate, orderItem, 1);
     }
 
-    private List<OrderItem> createOrderItem() {
+    private List<DiscountItemDto> createOrderItem() {
         List<String> orderItemsForm = List.of("아이스크림-5");
-        return ConvertOrderItem.getAllMenu(orderItemsForm);
+        List<OrderItem> allMenu = ConvertOrderItem.getAllMenu(orderItemsForm);
+
+        return allMenu.stream()
+                .map(DiscountItemDto::of)
+                .toList();
     }
 
     private LocalDate createDate(int dayOfMonth) {
