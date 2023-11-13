@@ -26,8 +26,8 @@ public class EventManager {
                 .toList();
     }
 
-    public int totalDiscountPrice(List<DiscountInfo> discountInfos) {
-        return discountEventManager.totalDiscountPrice(discountInfos);
+    public int getTotalDiscountPrice(List<DiscountInfo> discountInfos) {
+        return discountEventManager.getTotalDiscountPrice(discountInfos);
     }
 
     public Optional<GiftItem> getGiftItem(int totalOrderPrice) {

@@ -42,7 +42,7 @@ public class OrderService {
 
     public int getTotalDiscountPrice(List<DiscountInfo> discountInfos) {
 
-        return eventManager.totalDiscountPrice(discountInfos);
+        return eventManager.getTotalDiscountPrice(discountInfos);
     }
 
     public Optional<GiftItem> getGiftItem(int totalOrderPrice) {

@@ -21,7 +21,6 @@ public enum OrderConstraint {
         if (itemSize == beverageItemCount) {
             throw new IllegalArgumentException(ErrorPrefix.ERROR_PREFIX.getErrorPrefix() + NOT_BEVERAGE_ONLY);
         }
-
     }
 
     public int getLimit() {

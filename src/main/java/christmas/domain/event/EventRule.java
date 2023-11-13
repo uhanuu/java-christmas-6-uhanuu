@@ -9,16 +9,16 @@ public enum EventRule {
     CHRISTMAS_EVENT(2023, Month.DECEMBER, 10000);
     private final int year;
     private final Month eventMonth;
-    private final int minimumTotalPrice;
+    private final int minimumTotalOrderPrice;
 
-    EventRule(int year, Month eventMonth,int minimumTotalPrice) {
+    EventRule(int year, Month eventMonth,int minimumTotalOrderPrice) {
         this.eventMonth = eventMonth;
         this.year = year;
-        this.minimumTotalPrice = minimumTotalPrice;
+        this.minimumTotalOrderPrice = minimumTotalOrderPrice;
     }
 
-    public static boolean isTotalPriceAboveMinimum(int totalPrice) {
-        return totalPrice >= CHRISTMAS_EVENT.minimumTotalPrice;
+    public static boolean isTotalPriceAboveMinimum(int totalOrderPrice) {
+        return totalOrderPrice >= CHRISTMAS_EVENT.minimumTotalOrderPrice;
     }
 
     public static boolean isCurrentDate(LocalDate localDate) {

@@ -1,5 +1,7 @@
 package christmas.domain.event.item;
 
+import java.util.Objects;
+
 public class GiftItem {
 
     private final String message;
@@ -36,5 +38,18 @@ public class GiftItem {
 
     public int getQuantity() {
         return quantity;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        GiftItem giftItem = (GiftItem) o;
+        return price == giftItem.price && quantity == giftItem.quantity && Objects.equals(message, giftItem.message) && Objects.equals(name, giftItem.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(message, name, price, quantity);
     }
 }

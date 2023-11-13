@@ -33,7 +33,7 @@ public class DiscountEventManager {
         return EventRule.isTotalPriceAboveMinimum(totalPrice);
     }
 
-    public int totalDiscountPrice(List<DiscountInfo> discountInfos) {
+    public int getTotalDiscountPrice(List<DiscountInfo> discountInfos) {
         return discountInfos.stream()
                 .mapToInt(DiscountInfo::getDiscount)
                 .sum();
