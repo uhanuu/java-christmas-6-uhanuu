@@ -29,7 +29,7 @@ class InputValidatorTest {
 
     @ParameterizedTest(name = "{0}가 들어오면 예외가 발생한다.")
     @DisplayName("사용자 입력이 숫자가 아니면 예외가 발생한다.")
-    @ValueSource(strings = {"asdf", "하하호호", "123asd", "하하123"})
+    @ValueSource(strings = {"asdf", "하하호호", "123asd", "하하123", "하하-123", "호호-1"})
     public void parseIntExceptionTest(String input) {
         // when // then
         assertThatThrownBy(() -> validator.parseInt(input))
@@ -70,7 +70,7 @@ class InputValidatorTest {
 
     @ParameterizedTest(name = "{0}은 입력 폼과 다릅니다.")
     @DisplayName("사용자 주문의 입력 폼이 잘못되면 예외가 발생한다.")
-    @ValueSource(strings = {"티본스테이크1-1", "바비큐립", "asd-2", "제로콜라-100", "제로콜라-0", "티본스테이크-", "-3", " ", ""})
+    @ValueSource(strings = {"티본스테이크1-1", "바비큐립", "asd-2", "티본스테이크-", "-3", " ", ""})
     public void requestOrderItemsException(String input) {
         // given
         List<String> requestItems = requestItems(input);

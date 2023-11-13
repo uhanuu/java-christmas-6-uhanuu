@@ -10,8 +10,7 @@ import java.util.regex.Pattern;
 
 public class InputValidator {
 
-    //0-9로 바꾸고 다음에 숫자 변경할 때 0이면 예외처리하기
-    private static final Pattern ORDER_ITEMS_PATTERN = Pattern.compile("([가-힣]+)-([1-9][0-9]?)");
+    private static final Pattern ORDER_ITEMS_PATTERN = Pattern.compile("([가-힣]+)-([0-9]+$)");
 
     private final int YEAR = 2023;
     private final int MONTH = 12;

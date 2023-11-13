@@ -29,16 +29,19 @@ public class OrderController extends RetryController{
     }
 
     public void run() {
-        Order order = run(() -> createOrder());
+        final LocalDate localDate = run(() -> requestVisitDate());
+        Order order = run(() -> createOrder(localDate));
         displayOrderDetails(order);
         OrderBenefitPrice orderBenefitPrice = displayEventDetails(order);
         displayPaymentResult(orderBenefitPrice, order.getItemsTotalPrice());
     }
 
-    private Order createOrder() {
-        LocalDate localDate = input.requestVisitDate();
-        List<String> orderItemsForm = input.requestOrderItems();
+    private LocalDate requestVisitDate(){
+        return input.requestVisitDate();
+    }
 
+    private Order createOrder(LocalDate localDate) {
+        List<String> orderItemsForm = input.requestOrderItems();
         List<OrderItem> allItem = ConvertOrderItem.getAllMenu(orderItemsForm);
         OrderItems orderItems = new OrderItems(allItem);
         return new Order(localDate, orderItems);
