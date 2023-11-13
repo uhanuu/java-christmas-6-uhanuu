@@ -1,7 +1,6 @@
 package christmas;
 
 import christmas.controller.OrderController;
-import christmas.controller.dto.DiscountOrderServiceDto;
 import christmas.domain.event.EventManager;
 import christmas.domain.event.discount.DiscountEventManager;
 import christmas.domain.event.item.GiftItemEventManager;
@@ -24,12 +23,8 @@ public class Application {
         EventManager eventManager = new EventManager(new DiscountEventManager(discountPolicies), new GiftItemEventManager());
 
         OrderController orderController =
-                new OrderController(new InputView(), new OrderService(eventManager),new ConsoleOutputView());
+                new OrderController(new InputView(), new OrderService(eventManager) ,new ConsoleOutputView());
 
-        DiscountOrderServiceDto orderDto = orderController.createOrder();
-//        orderController.disCountEvent(orderDto);
-
-
-
+        orderController.run();
     }
 }

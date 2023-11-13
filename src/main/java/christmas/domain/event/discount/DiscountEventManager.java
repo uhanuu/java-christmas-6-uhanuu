@@ -2,11 +2,14 @@ package christmas.domain.event.discount;
 
 import christmas.domain.event.EventRule;
 import christmas.domain.event.discount.dto.DiscountInfo;
+import christmas.domain.event.item.GiftItem;
 import christmas.service.dto.DiscountDto;
 
 import java.time.LocalDate;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class DiscountEventManager {
 
@@ -16,8 +19,7 @@ public class DiscountEventManager {
         this.discountPolicies = discountPolicies;
     }
 
-    public List<DiscountInfo> getDiscountInfos(final DiscountDto discountDto) {
-        //List<DiscountInfo>를 가지는 컬렉션 만들어서 view에 넘길 데이터 가공하기, Manage에서 총 이벤트들의 내용을 전달 받는식으로 받아서 컬렉션에서 처리
+    public List<DiscountInfo> getDiscountInfos(DiscountDto discountDto) {
         if (canProcessEvent(discountDto.getLocalDate(), discountDto.getTotalPrice())) {
             return Collections.emptyList();
         }

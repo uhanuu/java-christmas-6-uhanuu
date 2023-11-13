@@ -19,7 +19,11 @@ public class EventManager {
     }
 
     public List<DiscountInfo> getDiscountInfos(DiscountDto discountDto) {
-        return discountEventManager.getDiscountInfos(discountDto);
+        List<DiscountInfo> discountInfos = discountEventManager.getDiscountInfos(discountDto);
+
+        return discountInfos.stream()
+                .filter(info -> info.getDiscount() != 0)
+                .toList();
     }
 
     public int totalDiscountPrice(List<DiscountInfo> discountInfos) {

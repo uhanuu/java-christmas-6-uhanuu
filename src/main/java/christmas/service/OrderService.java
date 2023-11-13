@@ -1,13 +1,18 @@
 package christmas.service;
 
-import christmas.controller.dto.DiscountOrderServiceDto;
 import christmas.domain.event.EventManager;
 import christmas.domain.event.discount.dto.DiscountInfo;
+import christmas.domain.event.item.GiftItem;
+import christmas.domain.order.Order;
 import christmas.domain.order.OrderItems;
 import christmas.service.dto.DiscountDto;
+import christmas.service.dto.DiscountInfoWithGiftItemDTO;
 
 import java.time.LocalDate;
+import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 
 public class OrderService {
@@ -18,9 +23,9 @@ public class OrderService {
         this.eventManager = eventManager;
     }
 
-    public List<DiscountInfo> getDiscountInfos(DiscountOrderServiceDto discountOrderServiceDto) {
-        LocalDate localDate = discountOrderServiceDto.getLocalDate();
-        OrderItems orderItems = discountOrderServiceDto.getOrderItems();
+    public List<DiscountInfo> getDiscountInfos(Order order) {
+        LocalDate localDate = order.getLocalDate();
+        OrderItems orderItems = order.getOrderItems();
 
         DiscountDto discountDto = createDiscountDto(localDate, orderItems);
         return eventManager.getDiscountInfos(discountDto);
@@ -32,5 +37,25 @@ public class OrderService {
 
     public int getTotalDiscountPrice(List<DiscountInfo> discountInfos) {
         return eventManager.totalDiscountPrice(discountInfos);
+    }
+
+    public Optional<GiftItem> getGiftItem(int totalOrderPrice) {
+        return eventManager.getGiftItem(totalOrderPrice);
+    }
+
+    public String getBadgeName(int totalEventPrice) {
+        return eventManager.getBadgeName(totalEventPrice);
+    }
+
+    public List<DiscountInfoWithGiftItemDTO> addGiftItemToDiscountInfos(List<DiscountInfo> discountInfos, Optional<GiftItem> giftItem) {
+
+        List<DiscountInfoWithGiftItemDTO> discountInfosWithGiftItem = discountInfos.stream()
+                .map(info -> new DiscountInfoWithGiftItemDTO(info.getMessage(), info.getDiscount()))
+                .collect(Collectors.toList());
+
+        giftItem.ifPresent(item ->
+                discountInfosWithGiftItem.add(new DiscountInfoWithGiftItemDTO(item.getMessage(), item.getPrice())));
+
+        return Collections.unmodifiableList(discountInfosWithGiftItem);
     }
 }

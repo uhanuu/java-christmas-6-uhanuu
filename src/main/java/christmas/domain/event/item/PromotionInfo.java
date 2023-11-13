@@ -1,13 +1,12 @@
 package christmas.domain.event.item;
 
-import java.util.Optional;
-
 public enum PromotionInfo {
 
     CHAMPAGNE("샴페인", 25_000, 1),
     EMPTY("없음", 0, 0),;
 
-    public static final int MIN_ORDER_AMOUNT_FOR_CHAMPAGNE = 120_000;
+    private static final int MIN_ORDER_AMOUNT_FOR_CHAMPAGNE = 120_000;
+    private static final String PROMOTION_EVENT_FORMAT = "증정 이벤트: %s";
 
     private final String name;
     private final int price;
@@ -28,6 +27,10 @@ public enum PromotionInfo {
 
     private static boolean hasGiftEligibility(int totalOrderPrice) {
         return totalOrderPrice >= MIN_ORDER_AMOUNT_FOR_CHAMPAGNE;
+    }
+
+    public String getPromotionEventNameFormat() {
+        return PROMOTION_EVENT_FORMAT;
     }
 
     public boolean isPresent() {
