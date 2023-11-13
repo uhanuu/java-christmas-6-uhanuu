@@ -11,8 +11,8 @@ public class InputView implements ConsoleInput{
 
     private final InputValidator inputValidator;
 
-    public InputView() {
-        this.inputValidator = new InputValidator();
+    public InputView(InputValidator inputValidator) {
+        this.inputValidator = inputValidator;
     }
 
     public LocalDate requestVisitDate() {
