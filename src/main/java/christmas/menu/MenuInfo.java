@@ -1,5 +1,7 @@
 package christmas.menu;
 
+import christmas.constants.ErrorPrefix;
+
 import java.util.Arrays;
 import java.util.Map;
 import java.util.Optional;
@@ -45,7 +47,8 @@ public enum MenuInfo {
 
     public static MenuInfo getMenuInfo(String name) {
         return Optional.ofNullable(MENU_INFO_MAP.get(name))
-                .orElseThrow(() -> new IllegalArgumentException( "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요."));
+                .orElseThrow(() -> new IllegalArgumentException(
+                        ErrorPrefix.ERROR_PREFIX.getErrorPrefix() + "유효하지 않은 주문입니다. 다시 입력해 주세요."));
     }
 
     public String getName() {

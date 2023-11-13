@@ -1,19 +1,20 @@
 package christmas.domain.order;
 
+import christmas.domain.order.quantity.Quantity;
 import christmas.menu.MenuInfo;
 import christmas.menu.MenuType;
 
 public class OrderItem {
     private final MenuInfo menuInfo;
-    private final int quantity;
+    private final Quantity quantity;
 
     public OrderItem(MenuInfo menuInfo, int quantity) {
         this.menuInfo = menuInfo;
-        this.quantity = quantity;
+        this.quantity = new Quantity(quantity);
     }
 
     public int getTotalPrice() {
-        return menuInfo.getPrice() * quantity;
+        return menuInfo.getPrice() * getQuantity();
     }
 
     public boolean isBeverage() {
@@ -21,18 +22,11 @@ public class OrderItem {
     }
 
     public int getQuantity() {
-        return quantity;
+        return quantity.getQuantity();
     }
 
     public MenuInfo getMenuInfo() {
         return menuInfo;
     }
 
-    @Override
-    public String toString() {
-        return "OrderItem{" +
-                "menuInfo=" + menuInfo +
-                ", quantity=" + quantity +
-                '}';
-    }
 }

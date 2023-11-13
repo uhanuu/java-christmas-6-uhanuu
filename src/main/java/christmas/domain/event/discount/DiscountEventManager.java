@@ -2,14 +2,11 @@ package christmas.domain.event.discount;
 
 import christmas.domain.event.EventRule;
 import christmas.domain.event.discount.dto.DiscountInfo;
-import christmas.domain.event.item.GiftItem;
 import christmas.service.dto.DiscountDto;
 
 import java.time.LocalDate;
 import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 public class DiscountEventManager {
 

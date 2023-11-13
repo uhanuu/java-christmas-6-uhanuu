@@ -23,7 +23,6 @@ public class ConvertOrderItem {
     private static OrderItem createOrderItem(List<String> itemForm) {
         String name = itemForm.get(NAME_INDEX);
         int quantity = Integer.parseInt(itemForm.get(QUANTITY_INDEX));
-
         return new OrderItem(MenuInfo.getMenuInfo(name), quantity);
     }
 

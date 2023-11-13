@@ -47,7 +47,8 @@ public class OrderService {
         return eventManager.getBadgeName(totalEventPrice);
     }
 
-    public List<DiscountInfoWithGiftItemDTO> addGiftItemToDiscountInfos(List<DiscountInfo> discountInfos, Optional<GiftItem> giftItem) {
+    public List<DiscountInfoWithGiftItemDTO> addGiftItemToDiscountInfos(List<DiscountInfo> discountInfos,
+                                                                        Optional<GiftItem> giftItem) {
 
         List<DiscountInfoWithGiftItemDTO> discountInfosWithGiftItem = discountInfos.stream()
                 .map(info -> new DiscountInfoWithGiftItemDTO(info.getMessage(), info.getDiscount()))
