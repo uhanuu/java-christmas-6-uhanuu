@@ -2,6 +2,7 @@ package christmas.view.input;
 
 import camp.nextstep.edu.missionutils.Console;
 import christmas.view.DisplayTestSupport;
+import christmas.view.input.validator.InputValidator;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -14,7 +15,7 @@ import static org.assertj.core.api.Assertions.*;
 
 class InputViewTest extends DisplayTestSupport {
 
-    private final InputView inputView = new InputView();
+    private final InputView inputView = new InputView(new InputValidator());
 
     @AfterEach
     void tearDown(){

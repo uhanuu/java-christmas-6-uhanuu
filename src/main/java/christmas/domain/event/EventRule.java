@@ -30,6 +30,6 @@ public enum EventRule {
     }
 
     private static boolean isCurrentDateInChristmasMonth(LocalDate localDate) {
-        return Objects.equals(localDate.getDayOfMonth(), CHRISTMAS_EVENT.eventMonth);
+        return Objects.equals(localDate.getMonth(), CHRISTMAS_EVENT.eventMonth);
     }
 }

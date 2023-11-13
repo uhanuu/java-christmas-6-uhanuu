@@ -17,7 +17,7 @@ public class DiscountEventManager {
     }
 
     public List<DiscountInfo> getDiscountInfos(DiscountDto discountDto) {
-        if (canProcessEvent(discountDto.getLocalDate(), discountDto.getTotalPrice())) {
+        if (!canProcessEvent(discountDto.getLocalDate(), discountDto.getTotalPrice())) {
             return Collections.emptyList();
         }
 

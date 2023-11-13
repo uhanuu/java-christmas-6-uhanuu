@@ -60,7 +60,7 @@ public class OrderController {
     }
 
     private OrderBenefitPrice displayEventDetails(Order order) {
-        //증정 메뉴 -중간에 giftItem optional 벗기기
+        //증정 메뉴
         Optional<GiftItem> giftItem = orderService.getGiftItem(order.getItemsTotalPrice());
         output.printGiftMenu(giftItem);
         //혜택 내역
