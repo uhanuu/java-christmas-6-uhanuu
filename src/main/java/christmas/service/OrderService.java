@@ -41,7 +41,6 @@ public class OrderService {
     }
 
     public int getTotalDiscountPrice(List<DiscountInfo> discountInfos) {
-
         return eventManager.getTotalDiscountPrice(discountInfos);
     }
 
@@ -56,13 +55,17 @@ public class OrderService {
     public List<DiscountInfoWithGiftItemDTO> addGiftItemToDiscountInfos(List<DiscountInfo> discountInfos,
                                                                         Optional<GiftItem> giftItem) {
 
-        List<DiscountInfoWithGiftItemDTO> discountInfosWithGiftItem = discountInfos.stream()
-                .map(info -> new DiscountInfoWithGiftItemDTO(info.getMessage(), info.getDiscount()))
-                .collect(Collectors.toList());
+        List<DiscountInfoWithGiftItemDTO> discountInfosWithGiftItem = createDiscountInfosWithGiftItemDto(discountInfos);
 
         giftItem.ifPresent(item ->
                 discountInfosWithGiftItem.add(new DiscountInfoWithGiftItemDTO(item.getMessage(), item.getPrice())));
 
         return Collections.unmodifiableList(discountInfosWithGiftItem);
+    }
+
+    private List<DiscountInfoWithGiftItemDTO> createDiscountInfosWithGiftItemDto(List<DiscountInfo> discountInfos) {
+        return discountInfos.stream()
+                .map(info -> new DiscountInfoWithGiftItemDTO(info.getMessage(), info.getDiscount()))
+                .collect(Collectors.toList());
     }
 }
