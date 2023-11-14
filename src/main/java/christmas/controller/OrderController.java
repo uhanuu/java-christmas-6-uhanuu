@@ -17,7 +17,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
-public class OrderController extends RetryController{
+public class OrderController extends ConsoleRetryController {
 
     private final OrderService orderService;
     private final ConsoleOutputView output;
@@ -62,11 +62,8 @@ public class OrderController extends RetryController{
     }
 
     private OrderBenefitPrice displayEventDetails(Order order) {
-        //증정 메뉴
         Optional<GiftItem> giftItem = displayGiftMenu(order);
-        //혜택 내역
         List<DiscountInfo> discountInfos = displayBenefitDetails(order, giftItem);
-        //총 혜택 금액
         return displayTotalBenefitPrice(giftItem, discountInfos);
     }
 

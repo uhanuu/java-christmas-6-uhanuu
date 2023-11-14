@@ -1,25 +1,32 @@
 package christmas.domain.order;
 
-import java.util.Collections;
-import java.util.List;
+import christmas.domain.order.constants.OrderMenuErrorMessage;
 
-import static christmas.domain.order.OrderConstraint.MAX_MENU_COUNT;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import static christmas.domain.order.constants.OrderQuantityConstraint.MAX_MENU_COUNT;
 
 public class OrderItems {
 
     private final List<OrderItem> orderItems;
 
     public OrderItems(List<OrderItem> orderItems) {
-        validateOrderItems(orderItems);
+        validateBeverageItems(orderItems);
         validateTotalQuantity(orderItems);
+        validateDuplicateOrderItems(orderItems);
         this.orderItems = orderItems;
     }
 
-    private void validateOrderItems(List<OrderItem> orderItems) {
+    private void validateBeverageItems(List<OrderItem> orderItems) {
         int itemSize = orderItems.size();
         int beverageItemCount = getBeverageItemCount(orderItems);
 
-        OrderConstraint.validateNotBeverageOnly(itemSize, beverageItemCount);
+        if (itemSize == beverageItemCount) {
+            throw new IllegalArgumentException(OrderMenuErrorMessage.NOT_BEVERAGE_ONLY_ERROR_MESSAGE.getErrorMessage());
+        }
     }
 
     private int getBeverageItemCount(List<OrderItem> orderItems) {
@@ -32,7 +39,16 @@ public class OrderItems {
         int totalQuantity = getTotalQuantity(orderItems);
 
         if (totalQuantity > MAX_MENU_COUNT.getLimit()) {
-            throw new IllegalArgumentException(MAX_MENU_COUNT.getErrorMessage());
+            throw new IllegalArgumentException(
+                    String.format(MAX_MENU_COUNT.getErrorMessage(), MAX_MENU_COUNT.getLimit()));
+        }
+    }
+
+    private void validateDuplicateOrderItems(List<OrderItem> orderItems) {
+        Set<OrderItem> uniqueItems = new HashSet<>(orderItems);
+
+        if (uniqueItems.size() != orderItems.size()) {
+            throw new IllegalArgumentException(OrderMenuErrorMessage.DUPLICATE_MENU_ERROR_MESSAGE.getErrorMessage());
         }
     }
 

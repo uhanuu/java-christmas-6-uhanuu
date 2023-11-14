@@ -46,6 +46,17 @@ class OrderItemsTest {
         assertThatThrownBy(() -> new OrderItems(List.of(orderItem1, orderItem2)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    @DisplayName("주문 메뉴는 중복될 수 없다.")
+    public void validateDuplicateOrderItems() {
+        // given
+        OrderItem orderItem1 = createOrderItem(MenuInfo.MUSHROOM_SOUP, 1);
+        OrderItem orderItem2 = createOrderItem(MenuInfo.MUSHROOM_SOUP, 5);
+        // when // then
+        assertThatThrownBy(() -> new OrderItems(List.of(orderItem1, orderItem2)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
     
 
     private OrderItems createOrderItems(OrderItem... items) {

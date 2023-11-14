@@ -36,6 +36,8 @@ public enum MenuInfo {
                 .collect(Collectors.toMap(info -> info.name, Function.identity()));
     }
 
+    private static final String NOT_FOUND_MENU_ERROR_MESSAGE = "유효하지 않은 주문입니다. 다시 입력해 주세요.";
+
     private final String name;
     private final int price;
 
@@ -48,7 +50,7 @@ public enum MenuInfo {
     public static MenuInfo getMenuInfo(String name) {
         return Optional.ofNullable(MENU_INFO_MAP.get(name))
                 .orElseThrow(() -> new IllegalArgumentException(
-                        ErrorPrefix.ERROR_PREFIX.getErrorPrefix() + "유효하지 않은 주문입니다. 다시 입력해 주세요."));
+                        ErrorPrefix.ERROR_PREFIX.getErrorPrefix() + NOT_FOUND_MENU_ERROR_MESSAGE));
     }
 
     public String getName() {

@@ -4,12 +4,12 @@ import christmas.view.input.ConsoleInput;
 
 import java.util.function.Supplier;
 
-public class RetryController {
+public class ConsoleRetryController {
 
     protected final ConsoleInput input;
 
-    protected RetryController(ConsoleInput consoleInput) {
-        this.input = consoleInput;
+    protected ConsoleRetryController(ConsoleInput input) {
+        this.input = input;
     }
 
     protected  <T> T run(final Supplier<T> supplier) {
