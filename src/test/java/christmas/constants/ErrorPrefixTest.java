@@ -13,7 +13,7 @@ class ErrorPrefixTest {
         //given
         String prefix = "[ERROR] ";
         // when
-        String errorPrefix = ErrorPrefix.ERROR_PREFIX.getErrorPrefix();
+        String errorPrefix = ErrorPrefix.PREFIX.getErrorPrefix();
         // then
         assertThat(prefix).isEqualTo(errorPrefix);
     }

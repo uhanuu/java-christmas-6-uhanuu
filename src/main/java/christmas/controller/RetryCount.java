@@ -1,6 +1,6 @@
 package christmas.controller;
 
-import christmas.constants.ErrorPrefix;
+import static christmas.constants.ErrorPrefix.PREFIX;
 
 public enum RetryCount {
     MAX_RETRY_COUNT(5, "재시도 횟수를 초과했습니다.");
@@ -18,6 +18,6 @@ public enum RetryCount {
     }
 
     public String getErrorMessage() {
-        return ErrorPrefix.ERROR_PREFIX.getErrorPrefix() + errorMessage;
+        return PREFIX.getErrorPrefix() + errorMessage;
     }
 }

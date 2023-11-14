@@ -42,8 +42,8 @@ public class ConsoleOutputView {
         System.out.println(OutputMessage.GIFT_ITEM_MESSAGE.getMessage());
         giftItem.ifPresentOrElse(
                 item -> System.out.printf(OutputMessage.MENU_FORMAT.getMessage(), item.getName(), item.getQuantity()),
-                () -> System.out.print(OutputMessage.NO_ITEM_MESSAGE.getMessage())
-        );
+                () -> System.out.print(OutputMessage.NO_ITEM_MESSAGE.getMessage()));
+
         newLine();
     }
 
@@ -53,8 +53,7 @@ public class ConsoleOutputView {
         if (discountInfosWithGiftItem.isEmpty()) {
             System.out.print(OutputMessage.NO_ITEM_MESSAGE.getMessage());
         }
-        discountInfosWithGiftItem
-                .forEach(info -> System.out.println(
+        discountInfosWithGiftItem.forEach(info -> System.out.println(
                         String.format(info.getMessage(), BENEFIT_PRICE_FORMAT.format(info.getDiscount()))));
         newLine();
     }

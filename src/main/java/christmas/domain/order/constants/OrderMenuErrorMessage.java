@@ -1,6 +1,6 @@
 package christmas.domain.order.constants;
 
-import christmas.constants.ErrorPrefix;
+import static christmas.constants.ErrorPrefix.PREFIX;
 
 public enum OrderMenuErrorMessage {
 
@@ -14,7 +14,7 @@ public enum OrderMenuErrorMessage {
     }
 
     public String getErrorMessage() {
-        return ErrorPrefix.ERROR_PREFIX.getErrorPrefix() + errorMessage;
+        return PREFIX.getErrorPrefix() + errorMessage;
     }
 }
 

@@ -29,8 +29,8 @@ public class OrderController extends ConsoleRetryController {
     }
 
     public void run() {
-        final LocalDate localDate = run(() -> requestVisitDate());
-        Order order = run(() -> createOrder(localDate));
+        final LocalDate localDate = execution(() -> requestVisitDate());
+        Order order = execution(() -> createOrder(localDate));
         displayOrderDetails(order);
         OrderBenefitPrice orderBenefitPrice = displayEventDetails(order);
         displayPaymentResult(orderBenefitPrice, order.getItemsTotalPrice());

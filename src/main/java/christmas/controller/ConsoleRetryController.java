@@ -4,6 +4,8 @@ import christmas.view.input.ConsoleInput;
 
 import java.util.function.Supplier;
 
+import static christmas.controller.RetryCount.MAX_RETRY_COUNT;
+
 public class ConsoleRetryController {
 
     protected final ConsoleInput input;
@@ -12,7 +14,7 @@ public class ConsoleRetryController {
         this.input = input;
     }
 
-    protected  <T> T run(final Supplier<T> supplier) {
+    protected  <T> T execution(final Supplier<T> supplier) {
         int retryCount = 0;
         while (RetryCount.isRetry(retryCount)) {
             try {
@@ -22,7 +24,7 @@ public class ConsoleRetryController {
             }
             retryCount += 1;
         }
-        throw new IllegalStateException(RetryCount.MAX_RETRY_COUNT.getErrorMessage());
+        throw new IllegalStateException(MAX_RETRY_COUNT.getErrorMessage());
     }
 
 }

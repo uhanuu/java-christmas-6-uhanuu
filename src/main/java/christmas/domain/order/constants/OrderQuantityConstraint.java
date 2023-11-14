@@ -1,6 +1,6 @@
 package christmas.domain.order.constants;
 
-import christmas.constants.ErrorPrefix;
+import static christmas.constants.ErrorPrefix.PREFIX;
 
 public enum OrderQuantityConstraint {
 
@@ -20,6 +20,6 @@ public enum OrderQuantityConstraint {
     }
 
     public String getErrorMessage() {
-        return ErrorPrefix.ERROR_PREFIX.getErrorPrefix() + errorMessage;
+        return PREFIX.getErrorPrefix() + errorMessage;
     }
 }

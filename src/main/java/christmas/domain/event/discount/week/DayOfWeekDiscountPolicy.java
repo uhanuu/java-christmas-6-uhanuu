@@ -2,7 +2,6 @@ package christmas.domain.event.discount.week;
 
 import christmas.domain.event.discount.DiscountPolicy;
 import christmas.domain.event.discount.dto.DiscountInfo;
-import christmas.domain.order.OrderItem;
 import christmas.service.dto.DiscountDto;
 import christmas.service.dto.DiscountItemDto;
 

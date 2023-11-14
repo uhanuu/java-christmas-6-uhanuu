@@ -1,12 +1,12 @@
 package christmas.menu;
 
-import christmas.constants.ErrorPrefix;
-
 import java.util.Arrays;
 import java.util.Map;
 import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+
+import static christmas.constants.ErrorPrefix.PREFIX;
 
 public enum MenuInfo {
 
@@ -50,7 +50,7 @@ public enum MenuInfo {
     public static MenuInfo getMenuInfo(String name) {
         return Optional.ofNullable(MENU_INFO_MAP.get(name))
                 .orElseThrow(() -> new IllegalArgumentException(
-                        ErrorPrefix.ERROR_PREFIX.getErrorPrefix() + NOT_FOUND_MENU_ERROR_MESSAGE));
+                        PREFIX.getErrorPrefix() + NOT_FOUND_MENU_ERROR_MESSAGE));
     }
 
     public String getName() {

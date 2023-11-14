@@ -55,8 +55,8 @@ public class OrderService {
     public List<DiscountInfoWithGiftItemDTO> addGiftItemToDiscountInfos(List<DiscountInfo> discountInfos,
                                                                         Optional<GiftItem> giftItem) {
 
-        List<DiscountInfoWithGiftItemDTO> discountInfosWithGiftItem = createDiscountInfosWithGiftItemDto(discountInfos);
-
+        List<DiscountInfoWithGiftItemDTO> discountInfosWithGiftItem =
+                createDiscountInfosWithGiftItemDto(discountInfos);
         giftItem.ifPresent(item ->
                 discountInfosWithGiftItem.add(new DiscountInfoWithGiftItemDTO(item.getMessage(), item.getPrice())));
 

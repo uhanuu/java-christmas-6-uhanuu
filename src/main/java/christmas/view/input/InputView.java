@@ -1,10 +1,11 @@
 package christmas.view.input;
 
-import christmas.view.input.constants.InputMessage;
 import christmas.view.input.validator.InputValidator;
 
 import java.time.LocalDate;
 import java.util.List;
+
+import static christmas.view.input.constants.InputMessage.*;
 
 public class InputView implements ConsoleInput{
 
@@ -22,8 +23,8 @@ public class InputView implements ConsoleInput{
     }
 
     private void printVisitDateMessage() {
-        System.out.println(InputMessage.START_MESSAGE.getMessage());
-        System.out.println(InputMessage.REQUEST_DATE_MESSAGE.getMessage());
+        System.out.println(START_MESSAGE.getMessage());
+        System.out.println(REQUEST_DATE_MESSAGE.getMessage());
     }
 
     @Override
@@ -35,7 +36,7 @@ public class InputView implements ConsoleInput{
     }
 
     private void printOrderItemsMessage() {
-        System.out.println(InputMessage.REQUEST_MENU_AND_QUANTITY_MESSAGE.getMessage());
+        System.out.println(REQUEST_MENU_AND_QUANTITY_MESSAGE.getMessage());
     }
 
     private void validateItems(List<String> requestOrderItems) {

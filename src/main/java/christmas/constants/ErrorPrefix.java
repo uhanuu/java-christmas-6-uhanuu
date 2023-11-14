@@ -2,7 +2,7 @@ package christmas.constants;
 
 public enum ErrorPrefix {
 
-    ERROR_PREFIX("[ERROR] ");
+    PREFIX("[ERROR] ");
 
     private final String errorPrefix;
 
