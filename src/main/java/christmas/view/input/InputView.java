@@ -4,7 +4,6 @@ import christmas.view.input.constants.InputMessage;
 import christmas.view.input.validator.InputValidator;
 
 import java.time.LocalDate;
-import java.util.Arrays;
 import java.util.List;
 
 public class InputView implements ConsoleInput{

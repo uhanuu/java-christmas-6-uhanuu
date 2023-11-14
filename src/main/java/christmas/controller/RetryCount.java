@@ -14,7 +14,7 @@ public enum RetryCount {
     }
 
     public static boolean isRetry(int retryCount) {
-        return retryCount < MAX_RETRY_COUNT.count;
+        return retryCount <= MAX_RETRY_COUNT.count;
     }
 
     public String getErrorMessage() {
